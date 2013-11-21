@@ -4,7 +4,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 box         = "centos63"
-url         = "http://packages.vstone.eu/vagrant-boxes/centos-6.3-64bit-latest.box"
+url         = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130731.box"
 hostname    = "dev"
 domain      = "local.box"
 ram         = "256"
@@ -21,7 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |vb|
     vb.customize [
       "modifyvm", :id,
-      "--name", hostname,
+      "--name", hostname + "." + domain,
       "--memory", ram
     ]
   end

@@ -1,6 +1,6 @@
 class lamp {
     package { php:
-        ensure => '5.3.3*',
+        ensure => 'latest',
     }
 
     package { php-gd:
@@ -36,6 +36,11 @@ class lamp {
     class { 'apache':
         default_vhost => false,
         mpm_module => 'prefork',
+    }
+
+    apache::vhost { 'first.local.dev':
+        port    => '80',
+        docroot => '/var/www/first',
     }
 
     class { 'apache::mod::php':
