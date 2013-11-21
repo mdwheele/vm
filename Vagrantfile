@@ -4,17 +4,16 @@
 VAGRANTFILE_API_VERSION = "2"
 
 box         = "centos63"
-url         = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.3-x86_64-v20130101.box"
+url         = "http://packages.vstone.eu/vagrant-boxes/centos-6.3-64bit-latest.box"
 hostname    = "dev"
 domain      = "local.box"
 ram         = "256"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.hostname = "dev.local"
 
   config.vm.box = box
   config.vm.box_url = url
-  config.vm.host_name = hostname + "." + domain
+  config.vm.hostname = hostname + "." + domain
   config.vm.network :forwarded_port, guest: 80, host: 8080
 
   config.ssh.forward_agent = true
@@ -32,7 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.manifests_path = "manifests"
     puppet.manifest_file  = "default.pp"
     puppet.facter = {
-      'fqdn' => config.vm.host_name,
+      'fqdn' => hostname + "." + domain,
     }
   end
 end

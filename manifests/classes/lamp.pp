@@ -1,46 +1,36 @@
 class lamp {
-    package { php5:
-        ensure => latest,
+    package { php:
+        ensure => '5.3.3*',
     }
 
-    package { php5-gd:
+    package { php-gd:
         ensure => latest,
-        require => Package['php5']
+        require => Package['php']
     }
 
-    package { php5-mysql:
+    package { php-mysql:
         ensure => latest,
-        require => Package['php5']
+        require => Package['php']
     }
 
-    package { php5-curl:
+    package { php-common:
         ensure => latest,
-        require => Package['php5']
+        require => Package['php']
     }
 
-    package { php5-common:
+    package { php-cli:
         ensure => latest,
-        require => Package['php5']
+        require => Package['php']
     }
 
-    package { php5-cli:
+    package { php-pecl-apc:
         ensure => latest,
-        require => Package['php5']
-    }
-
-    package { php-apc:
-        ensure => latest,
-        require => Package['php5']
+        require => Package['php']
     }
 
     package { php-pear:
         ensure => latest,
-        require => Package['php5']
-    }
-
-    package { php-console-table:
-        ensure => latest,
-        require => [Package['php5'], Package['php-pear']]
+        require => Package['php']
     }
 
     class { 'apache':
@@ -49,7 +39,7 @@ class lamp {
     }
 
     class { 'apache::mod::php':
-        require => Package["php5"]
+        require => Package["php"]
     }
 
     class { '::mysql::server':
