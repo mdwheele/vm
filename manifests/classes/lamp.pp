@@ -3,51 +3,19 @@ class lamp {
         ensure => 'latest',
     }
 
-    package { php-gd:
-        ensure => latest,
-        require => Package['php']
-    }
-
-    package { php-mysql:
-        ensure => latest,
-        require => Package['php']
-    }
-
-    package { php-common:
-        ensure => latest,
-        require => Package['php']
-    }
-
-    package { php-cli:
-        ensure => latest,
-        require => Package['php']
-    }
-
-    package { php-pecl-apc:
-        ensure => latest,
-        require => Package['php']
-    }
-
-    package { php-pear:
-        ensure => latest,
-        require => Package['php']
-    }
-
     class { 'apache':
-        default_vhost => false,
+        default_vhost => true,
         mpm_module => 'prefork',
-    }
-
-    apache::vhost { 'first.local.dev':
-        port    => '80',
-        docroot => '/var/www/first',
     }
 
     class { 'apache::mod::php':
         require => Package["php"]
     }
 
-    class { '::mysql::server':
-        root_password => 'root',
+    firewall { '100 allow http, ssl, and mysql access':
+        port   => [80, 443, 3306],
+        proto  => tcp,
+        action => accept,
     }
+
 }
