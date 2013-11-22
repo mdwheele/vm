@@ -16,3 +16,6 @@
 [submodule "modules/phpmyadmin"]
 	path = modules/phpmyadmin
 	url = git@github.com:frastel/puppet-phpmyadmin.git
+[submodule "modules/composer"]
+	path = modules/composer
+	url = git://github.com/willdurand/puppet-composer.git

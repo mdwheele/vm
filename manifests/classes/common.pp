@@ -1,0 +1,3 @@
+class common {
+    class { 'composer': }
+}

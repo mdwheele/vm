@@ -6,7 +6,7 @@ VAGRANTFILE_API_VERSION = "2"
 box         = "ncsu-centos64"
 url         = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130731.box"
 hostname    = "local.dev.box"
-ram         = "256"
+ram         = "1024"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -18,6 +18,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.network :forwarded_port, guest: 80, host: 8080
 
     config.ssh.forward_agent = true
+
+    config.vm.synced_folder "~/www", "/var/www/html"
 
     config.vm.provider :virtualbox do |vb|
         vb.customize [

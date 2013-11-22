@@ -1,6 +1,10 @@
 class lamp {
     package { php:
-        ensure => 'latest',
+        ensure => latest,
+    }
+
+    package { php-pear:
+        ensure => latest,
     }
 
     package { php-mysql:
@@ -42,5 +46,4 @@ class lamp {
     class { '::mysql::server':
         root_password => 'root',
     }
-
 }

@@ -1,5 +1,6 @@
 import "classes/*"
 
 node default {
-  include lamp
+    include common
+    include lamp
 }
