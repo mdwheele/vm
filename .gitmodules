@@ -13,3 +13,6 @@
 [submodule "modules/firewall"]
 	path = modules/firewall
 	url = git@github.com:puppetlabs/puppetlabs-firewall.git
+[submodule "modules/phpmyadmin"]
+	path = modules/phpmyadmin
+	url = git@github.com:frastel/puppet-phpmyadmin.git
