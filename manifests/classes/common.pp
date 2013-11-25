@@ -1,3 +1,2 @@
 class common {
-    class { 'composer': }
 }
