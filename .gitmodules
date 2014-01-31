@@ -16,3 +16,6 @@
 [submodule "modules/phpmyadmin"]
 	path = modules/phpmyadmin
 	url = git@github.com:frastel/puppet-phpmyadmin.git
+[submodule "modules/puppet-jenkins"]
+	path = modules/puppet-jenkins
+	url = git@github.com:jenkinsci/puppet-jenkins.git
