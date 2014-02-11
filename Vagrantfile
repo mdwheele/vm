@@ -3,35 +3,28 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
-box         = "ncsu-centos64"
-url         = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130731.box"
-hostname    = "local.dev.box"
-ram         = "1024"
-
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-    config.vm.box = box
-    config.vm.box_url = url
-    config.vm.hostname = hostname
+    config.vm.box = "centos65"
+    config.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box"
+    config.vm.hostname = "local.dev"
 
     config.vm.network :private_network, ip: "192.168.33.10"
     config.vm.network :forwarded_port, guest: 80, host: 8080
 
     config.ssh.forward_agent = true
 
-    config.vm.synced_folder "~/www", "/var/www/html"
-
     config.vm.provider :virtualbox do |vb|
         vb.customize [
             "modifyvm", :id,
-            "--memory", ram
+            "--memory", "1024"
         ]
     end
 
     config.vm.provision :puppet do |puppet|
-        puppet.module_path = "modules"
-        puppet.manifests_path = "manifests"
-        puppet.manifest_file  = "site.pp"
+        puppet.module_path = "puppet/modules"
+        puppet.manifests_path = "puppet/manifests"
+        puppet.manifest_file  = "init.pp"
         puppet.options = "--hiera_config /vagrant/hiera.yaml"
     end
 end
