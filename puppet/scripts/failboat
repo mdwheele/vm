@@ -1,0 +1,77 @@
+#!/bin/bash
+
+#    __      _ _ _                 _
+#   / _|    (_) | |               | |
+#  | |_ __ _ _| | |__   ___   __ _| |_
+#  |  _/ _` | | | '_ \ / _ \ / _` | __|
+#  | || (_| | | | |_) | (_) | (_| | |_
+#  |_| \__,_|_|_|_.__/ \___/ \__,_|\__|
+
+VERSION=0.1
+
+######################################################
+#
+# Usage Command
+#
+######################################################
+
+usage() {
+    echo "Usage: $0 [-h] [-v] [command] [args]"
+    echo "  -h  Help. Display this message and quit."
+    echo "  -v  Version. Print version number and quit."
+    exit
+}
+
+######################################################
+#
+# Build Command
+#
+######################################################
+
+build() {
+    if [ -z $1 ]; then
+        echo "No PHP version specified... Exiting."
+        exit
+    fi
+
+    #todo
+}
+
+######################################################
+#
+# Execute Command Wrapper
+#
+######################################################
+
+optspec="hvf:"
+while getopts "$optspec" optchar
+do
+    case "${optchar}" in
+        h)
+            usage
+            shift
+            ;;
+        v)
+            echo "Version $VERSION";
+            shift
+            ;;
+        *)
+            usage
+            shift
+            ;;
+    esac
+done
+
+
+# Fail if no commands provided.
+if [ -z $1 ]; then
+    usage
+    exit
+fi
+
+# Store function name and shift args.
+FUNC_NAME=${1}
+shift
+
+# Call function name with remaining args.
+${FUNC_NAME} $@
