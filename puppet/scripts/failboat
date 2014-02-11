@@ -80,6 +80,34 @@ hoist() {
             exit
         fi
     fi
+
+    cd $PHP_DIR
+    echo "Configuring ${PHP_VERSION} in $PHP_DIR"
+
+    # Configure
+    OPTIONS="--with-gd --with-jpeg-dir=/usr --with-xpm-dir=/usr --with-freetype-dir=/usr \
+        --with-mysql=/usr --enable-bcmath --with-gmp --with-readline \
+        --with-openssl --with-curl --without-esmtp \
+        --with-mysqli --enable-pcntl \
+        --enable-memory-limit --with-mcrypt --with-t1lib \
+        --enable-debug --with-iconv --enable-wddx --with-pdo-pgsql \
+        --enable-spl --enable-pdo --with-pdo-mysql --with-pdo-sqlite \
+        --with-ctype --with-bz2 --enable-mbstring --with-mime-magic \
+        --with-xmlrpc --with-zlib --disable-zend-memory-manager --with-esmtp \
+        --with-xsl --enable-exif --enable-soap --enable-ftp"
+
+    ./configure --prefix=/usr/local/php/${PHP_VERSION} ${OPTIONS}
+
+    # Build and Install
+    echo "Building ${PHP_VERSION} in ${PHP_DIR}"
+    make -j 5
+
+    echo "Installing ${PHP_VERSION} in ${PHP_DIR}"
+    sudo make install
+
+    echo ""
+    echo "PHP version ${PHP_VERSION} is now installed. Type: $0 ready ${PHP_VERSION}"
+    echo ""
 }
 
 hoist-usage() {
