@@ -19,6 +19,8 @@ Package {
 # Packages
 
 node default {
+    include selinux::disable
+
     include epel
     include rpmforge
     include devtools
