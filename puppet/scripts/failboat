@@ -89,7 +89,6 @@ hoist() {
 
     # Configure
     OPTIONS="--with-libdir=lib64 \
-             --prefix=/usr/local \
              --with-layout=PHP \
              --with-pear \
              --with-apxs2 \
@@ -136,6 +135,7 @@ hoist() {
              --enable-sysvmsg \
              --enable-shmop"
 
+    sudo mkdir -p /usr/local/php/${PHP_VERSION}
     ./configure --prefix=/usr/local/php/${PHP_VERSION} ${OPTIONS}
 
     # Build and Install
@@ -146,7 +146,7 @@ hoist() {
     sudo make install
 
     echo ""
-    echo "PHP version ${PHP_VERSION} is now installed. Type: $0 ready ${PHP_VERSION}"
+    echo "PHP version ${PHP_VERSION} is now installed. Type: $0 turn ${PHP_VERSION}"
     echo ""
 }
 
@@ -158,39 +158,60 @@ hoist-usage() {
 
 ######################################################
 #
+#
+#
+######################################################
+
+function turn () {
+    if [ "$#" == "0" ]; then
+        export PATH=/usr/local/php/$1/bin:/usr/local/bin:/usr/bin:/bin:/vagrant/puppet/scripts
+    else
+        PATH=/usr/local/php/$1/bin:$PATH
+    fi
+}
+
+turn-usage() {
+    echo "Usage: $0 turn [version]"
+    echo "  e.g. $0 turn 5.3.3"
+    exit
+}
+
+######################################################
+#
 # Execute Command Wrapper
 #
 ######################################################
 
-optspec="hvf:"
-while getopts "$optspec" optchar
-do
-    case "${optchar}" in
-        h)
-            usage
-            exit
-            ;;
-        v)
-            echo "Version $VERSION";
-            exit
-            ;;
-        *)
-            usage
-            shift
-            ;;
-    esac
-done
+function bootstrap() {
+    optspec="hvf:"
+    while getopts "$optspec" optchar
+    do
+        case "${optchar}" in
+            h)
+                usage
+                exit
+                ;;
+            v)
+                echo "Version $VERSION";
+                exit
+                ;;
+            *)
+                usage
+                shift
+                ;;
+        esac
+    done
 
+    # Fail if no commands provided.
+    if [ -z $1 ]; then
+        usage
+        exit
+    fi
 
-# Fail if no commands provided.
-if [ -z $1 ]; then
-    usage
-    exit
-fi
+    # Store function name and shift args.
+    FUNC_NAME=${1}
+    shift
 
-# Store function name and shift args.
-FUNC_NAME=${1}
-shift
-
-# Call function name with remaining args.
-${FUNC_NAME} $@
+    # Call function name with remaining args.
+    ${FUNC_NAME} $@
+}
