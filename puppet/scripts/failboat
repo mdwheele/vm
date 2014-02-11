@@ -36,7 +36,7 @@ hoist() {
     EXTRA_FLAGS=
 
     SRC_DIR=/home/vagrant/src
-    PHP_DIR=${SRC_DIR}/php-${VERSION}
+    PHP_DIR=${SRC_DIR}/php-${PHP_VERSION}
 
     # PHP Version Required.
     if [ -z $PHP_VERSION ]; then
@@ -79,22 +79,62 @@ hoist() {
             echo "Could not find php-${PHP_VERSION}.tar.gz. Jumping ship!"
             exit
         fi
+
+        rm -rf ${PHP_DIR}
+        tar -zxf php-${PHP_VERSION}.tar.gz
     fi
 
     cd $PHP_DIR
     echo "Configuring ${PHP_VERSION} in $PHP_DIR"
 
     # Configure
-    OPTIONS="--with-gd --with-jpeg-dir=/usr --with-xpm-dir=/usr --with-freetype-dir=/usr \
-        --with-mysql=/usr --enable-bcmath --with-gmp --with-readline \
-        --with-openssl --with-curl --without-esmtp \
-        --with-mysqli --enable-pcntl \
-        --enable-memory-limit --with-mcrypt --with-t1lib \
-        --enable-debug --with-iconv --enable-wddx --with-pdo-pgsql \
-        --enable-spl --enable-pdo --with-pdo-mysql --with-pdo-sqlite \
-        --with-ctype --with-bz2 --enable-mbstring --with-mime-magic \
-        --with-xmlrpc --with-zlib --disable-zend-memory-manager --with-esmtp \
-        --with-xsl --enable-exif --enable-soap --enable-ftp"
+    OPTIONS="--with-libdir=lib64 \
+             --prefix=/usr/local \
+             --with-layout=PHP \
+             --with-pear \
+             --with-apxs2 \
+             --enable-calendar \
+             --enable-bcmath \
+             --with-gmp \
+             --enable-exif \
+             --with-mcrypt \
+             --with-mhash \
+             --with-zlib \
+             --with-bz2 \
+             --enable-zip \
+             --enable-ftp \
+             --enable-mbstring \
+             --with-iconv \
+             --enable-intl \
+             --with-icu-dir=/usr \
+             --with-gettext \
+             --with-pspell \
+             --enable-sockets \
+             --with-openssl \
+             --with-curl \
+             --with-curlwrappers \
+             --with-gd \
+             --enable-gd-native-ttf \
+             --with-jpeg-dir=/usr \
+             --with-png-dir=/usr \
+             --with-zlib-dir=/usr \
+             --with-xpm-dir=/usr \
+             --with-vpx-dir=/usr \
+             --with-freetype-dir=/usr \
+             --with-t1lib=/usr \
+             --with-libxml-dir=/usr \
+             --with-mysql=mysqlnd \
+             --with-mysqli=mysqlnd \
+             --with-pdo-mysql=mysqlnd \
+             --enable-soap \
+             --with-xmlrpc \
+             --with-xsl \
+             --with-tidy=/usr \
+             --with-readline \
+             --enable-pcntl \
+             --enable-sysvshm \
+             --enable-sysvmsg \
+             --enable-shmop"
 
     ./configure --prefix=/usr/local/php/${PHP_VERSION} ${OPTIONS}
 
