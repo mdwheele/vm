@@ -6,15 +6,7 @@ This repository is for the S.S. Failboat, a local development environment mainta
 
 ### Installed Packages
 
-* PHP 5.3
-* Apache
-* MySQL 5.1
-* phpmyadmin (latest)
-* Git (latest)
-* Composer (latest)
-* PHPUnit (3.7)
-* WP-CLI
-* Guard
+TBD
 
 ## Installation Instructions
 
