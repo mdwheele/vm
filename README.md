@@ -1,6 +1,6 @@
 ![image](https://f.cloud.github.com/assets/2453394/2131655/75d3d610-92a3-11e3-977c-44a3cb6ec8c0.png)
 
-This repository is for the S.S. Failboat, a local development environment maintained by Captain Horace, the Basement Keeper (aka @mdwheele).
+This repository is for the S.S. Failboat, a local development environment maintained by Captain Horace, the Dragon Daddy (aka @mdwheele).
 
 ## Features
 
