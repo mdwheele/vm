@@ -19,6 +19,7 @@ Package {
 # Packages
 
 node default {
-    include base
+    include epel
+    include rpmforge
     include devtools
 }
