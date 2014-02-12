@@ -21,6 +21,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ]
     end
 
+    # Copy host .gitconfig to Vagrant home directory.
+    config.vm.provision :shell, :inline => "echo -e '#{File.read("#{Dir.home}/.gitconfig")}' > '/home/vagrant/.gitconfig'"
+
     config.vm.provision :puppet do |puppet|
         puppet.module_path = "puppet/modules"
         puppet.manifests_path = "puppet/manifests"
