@@ -182,36 +182,34 @@ turn-usage() {
 #
 ######################################################
 
-function bootstrap() {
-    optspec="hvf:"
-    while getopts "$optspec" optchar
-    do
-        case "${optchar}" in
-            h)
-                usage
-                exit
-                ;;
-            v)
-                echo "Version $VERSION";
-                exit
-                ;;
-            *)
-                usage
-                shift
-                ;;
-        esac
-    done
+optspec="hvf:"
+while getopts "$optspec" optchar
+do
+    case "${optchar}" in
+        h)
+            usage
+            exit
+            ;;
+        v)
+            echo "Version $VERSION";
+            exit
+            ;;
+        *)
+            usage
+            shift
+            ;;
+    esac
+done
 
-    # Fail if no commands provided.
-    if [ -z $1 ]; then
-        usage
-        exit
-    fi
+# Fail if no commands provided.
+if [ -z $1 ]; then
+    usage
+    exit
+fi
 
-    # Store function name and shift args.
-    FUNC_NAME=${1}
-    shift
+# Store function name and shift args.
+FUNC_NAME=${1}
+shift
 
-    # Call function name with remaining args.
-    ${FUNC_NAME} $@
-}
+# Call function name with remaining args.
+${FUNC_NAME} $@
