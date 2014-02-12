@@ -6,7 +6,9 @@ This repository is for the S.S. Failboat, a local development environment mainta
 
 ### Installed Packages
 
-TBD
+* PHP 5.3.3
+* Apache
+* Git 1.7
 
 ## Installation Instructions
 
