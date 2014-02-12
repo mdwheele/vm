@@ -17,6 +17,7 @@ class php (
         owner   => root,
         group   => root,
         mode    => 644,
+        notify  => Service["httpd"],
     }
 
 }

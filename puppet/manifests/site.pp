@@ -31,4 +31,6 @@ node default {
         display_errors => true,
     }
 
+    include httpd
+
 }
