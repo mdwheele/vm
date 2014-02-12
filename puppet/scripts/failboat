@@ -163,10 +163,10 @@ hoist-usage() {
 ######################################################
 
 function turn () {
-    if [ "$#" == "0" ]; then
-        export PATH=/usr/local/php/$1/bin:/usr/local/bin:/usr/bin:/bin:/vagrant/puppet/scripts
+    if [ "$1" == "reset" ]; then
+        sudo rm /usr/local/bin/php
     else
-        PATH=/usr/local/php/$1/bin:$PATH
+        sudo ln -s /usr/local/php/$1/bin/php /usr/local/bin/php
     fi
 }
 
