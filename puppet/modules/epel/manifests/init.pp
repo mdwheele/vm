@@ -1,8 +1,11 @@
 class epel (
+
     $enabled = 1,
     $debuginfo = 0,
     $source = 0
+
 ) {
+
     yumrepo { "epel":
         descr    => "Extra Packages for Enterprise Linux ${operatingsystemmajrelease} - \$basearch",
         baseurl  => "ftp://ftp.linux.ncsu.edu/pub/epel/${operatingsystemmajrelease}/\$basearch",
@@ -33,4 +36,5 @@ class epel (
         path    => "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${operatingsystemmajrelease}",
         before  => Yumrepo['epel','epel-source','epel-debuginfo'],
     }
+
 }

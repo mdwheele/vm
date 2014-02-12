@@ -1,4 +1,5 @@
 define epel::rpm_gpg_key($path) {
+
     exec {  "import-${name}":
         path      => '/bin:/usr/bin:/sbin:/usr/sbin',
         command   => "rpm --import ${path}",
@@ -6,4 +7,5 @@ define epel::rpm_gpg_key($path) {
         require   => File[$path],
         logoutput => 'on_failure',
     }
+
 }

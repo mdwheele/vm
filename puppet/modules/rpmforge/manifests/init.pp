@@ -1,8 +1,11 @@
 class rpmforge (
+
     $enabled = 1,
     $extras = 0,
     $testing = 0
+
 ) {
+
     yumrepo { 'rpmforge':
         descr       => "Rpmforge",
         baseurl     => "http://apt.sw.be/redhat/el${operatingsystemmajrelease}/en/${architecture}/rpmforge/",
@@ -20,4 +23,5 @@ class rpmforge (
         baseurl     => "http://apt.sw.be/redhat/el${operatingsystemmajrelease}/en/${architecture}/testing",
         enabled     => $testing,
     }
+
 }
