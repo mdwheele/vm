@@ -12,6 +12,8 @@ Vagrant.configure("2") do |config|
 
     config.ssh.forward_agent = true
 
+    config.vm.synced_folder "~/Sites", "/var/www/html"
+
     config.vm.provider :virtualbox do |vb|
         vb.customize [
             "modifyvm", :id,
