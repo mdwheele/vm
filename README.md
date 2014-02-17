@@ -14,6 +14,20 @@ This repository is for the S.S. Failboat, a local development environment mainta
 
 TBD
 
+Prerequisites:
+
+Install these according to instructions on the vagrant website
+- install vagrant
+- virtual box
+
+Install:
+
+1. clone this repo
+2. cd into it
+3. run > vagrant up.  wait for provisioning to happen.  
+4. put index.php < echo "<?php phpinfo(); ?>" into your ~/Sites folder and go to http://localhost:8080/index.php
+should have a phpinfo page with 5.3.3.
+
 ## Usage
 
 TBD
