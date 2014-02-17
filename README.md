@@ -17,15 +17,22 @@ TBD
 Prerequisites:
 
 Install these according to instructions on the vagrant website
-- install vagrant
-- virtual box
+- install vagrant [download here](http://www.vagrantup.com/downloads)
+- virtual box (?) [download here](https://www.virtualbox.org/wiki/Downloads)
 
 Install:
 
 1. clone this repo
 2. cd into it
-3. run > vagrant up.  wait for provisioning to happen.  
-4. put index.php < echo "<?php phpinfo(); ?>" into your ~/Sites folder and go to http://localhost:8080/index.php
+3. run vagrant.  wait for provisioning to happen.  
+
+  > vagrant up
+
+4. preview your php info by creating index.php
+
+  <?php phpinfo(); ?>
+  
+  Put this in your ~/Sites folder and go to http://localhost:8080/index.php
 should have a phpinfo page with 5.3.3.
 
 ## Usage
