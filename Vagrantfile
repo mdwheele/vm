@@ -22,7 +22,8 @@ Vagrant.configure("2") do |config|
     end
 
     # Copy host .gitconfig to Vagrant home directory.
-    config.vm.provision :shell, :inline => "echo -e '#{File.read("#{Dir.home}/.gitconfig")}' > '/home/vagrant/.gitconfig'"
+    config.vm.provision(:shell, :inline => "/bin/cat <<'EOT' >/home/vagrant/.gitconfig \n#{File.read("#{Dir.home}/.gitconfig")}\nEOT") if File.exist?("#{Dir.home}/.gitconfig")
+    config.vm.provision(:shell, :inline => "echo 'Your Failboat is leaking:\n#{Dir.home}/.gitconfig does not exist!!\nYou may need to configure git!!!'") unless File.exist?("#{Dir.home}/.gitconfig")
 
     config.vm.provision :puppet do |puppet|
         puppet.module_path = "puppet/modules"
