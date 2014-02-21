@@ -33,6 +33,10 @@ Build the failboat:
   Put this in your ~/Sites folder and go to http://localhost:8080/index.php
 should have a phpinfo page with 5.3.3.
 
+Stop the failboat:
+
+  > vagrant halt
+
 ## Usage
 
 TBD
