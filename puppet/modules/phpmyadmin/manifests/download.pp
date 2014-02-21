@@ -1,0 +1,28 @@
+class phpmyadmin::download {
+
+    file { "/usr/share/phpmyadmin":
+        ensure  => "directory",
+        owner   => "apache",
+        group   => "apache",
+        mode    => 700
+    }
+
+    exec { "phpmyadmin_wget":
+        command   => "/usr/bin/wget https://github.com/phpmyadmin/phpmyadmin/archive/STABLE.tar.gz -O /tmp/phpmyadmin-stable.tar.gz",
+        logoutput => on_failure,
+        creates   => "/tmp/phpmyadmin-stable.tar.gz",
+        require   => File["/usr/share/phpmyadmin"]
+    }
+
+    exec { "phpmyadmin_unzip":
+        cwd     => "/usr/share/phpmyadmin",
+        command => "/bin/tar xvf /tmp/phpmyadmin-stable.tar.gz --strip-components=1 && chown -R apache:apache .",
+        require => Exec["phpmyadmin_wget"]
+    }
+
+    file { "/tmp/phpmyadmin-stable.tar.gz":
+        ensure => absent,
+        require => Exec["phpmyadmin_unzip"]
+    }
+
+}

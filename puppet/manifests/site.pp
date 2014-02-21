@@ -28,6 +28,5 @@ node default {
         display_errors => true,
     }
 
-    include httpd, mysql
-
+    include httpd, mysql, phpmyadmin
 }
