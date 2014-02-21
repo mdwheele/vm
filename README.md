@@ -12,15 +12,13 @@ This repository is for the S.S. Failboat, a local development environment mainta
 
 ## Installation Instructions
 
-TBD
-
 Prerequisites:
 
 Install these according to instructions on the vagrant website
 - install vagrant [download here](http://www.vagrantup.com/downloads)
-- virtual box (?) [download here](https://www.virtualbox.org/wiki/Downloads)
+- install virtual box [download here](https://www.virtualbox.org/wiki/Downloads)
 
-Install:
+Build the failboat:
 
 1. clone this repo
 2. cd into it
