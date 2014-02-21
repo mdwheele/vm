@@ -9,19 +9,22 @@ class epel (
     yumrepo { "epel":
         descr    => "Extra Packages for Enterprise Linux ${operatingsystemmajrelease} - \$basearch",
         baseurl  => "ftp://ftp.linux.ncsu.edu/pub/epel/${operatingsystemmajrelease}/\$basearch",
-        enabled  => $enabled
+        enabled  => $enabled,
+        priority => 10,
     }
 
     yumrepo { "epel-debuginfo":
         descr    => "Extra Packages for Enterprise Linux ${operatingsystemmajrelease} - \$basearch - Debug",
         baseurl  => "ftp://ftp.linux.ncsu.edu/pub/epel/${operatingsystemmajrelease}/\$basearch/debug",
-        enabled  => $debuginfo
+        enabled  => $debuginfo,
+        priority => 10,
     }
 
     yumrepo { "epel-source":
         descr    => "Extra Packages for Enterprise Linux ${operatingsystemmajrelease} - \$basearch - Source",
         baseurl  => "ftp://ftp.linux.ncsu.edu/pub/epel/${operatingsystemmajrelease}/SRPMS",
-        enabled  => $source
+        enabled  => $source,
+        priority => 10,
     }
 
     file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${$operatingsystemmajrelease}":

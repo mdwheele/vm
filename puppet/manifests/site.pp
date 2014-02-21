@@ -20,10 +20,7 @@ Package {
 
 node default {
 
-    include selinux::disable
-    include epel
-    include rpmforge
-    include devtools
+    include selinux::disable, epel, devtools, rpmforge
 
     # LAMP Stack. Wrap this. Durty durty.
     class { "php" :
@@ -31,6 +28,6 @@ node default {
         display_errors => true,
     }
 
-    include httpd
+    include httpd, mysql
 
 }

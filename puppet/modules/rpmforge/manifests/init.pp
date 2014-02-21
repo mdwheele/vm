@@ -24,4 +24,17 @@ class rpmforge (
         enabled     => $testing,
     }
 
+    file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag":
+        ensure => present,
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0644',
+        source => "puppet:///modules/rpmforge/RPM-GPG-KEY-rpmforge-dag",
+    }
+
+    rpmforge::rpm_gpg_key{ "rpmforge":
+        path    => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag",
+        before  => Yumrepo['rpmforge','rpmforge-extras','rpmforge-testing'],
+    }
+
 }
