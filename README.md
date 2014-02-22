@@ -66,7 +66,25 @@ So, all that said, it takes about 8-10 minutes to provision on a circa 2010 Macb
 
 This are things you might do regularly in the environment.  If there's no documentation for how to do something you want, please suggest additions!
 
-#### Running commands with `root` permissions
+#### Working with Git inside the virtual machine.
+
+This environment has SSH Agent Forwarding enabled.  This would allow you use the SSH key you've created for authenticating to GitHub inside the virtual environment.  However, there is one configuration step required before the virtual environment can use this key.
+
+You'll need to make sure that the SSH key is added to the default SSH agent for your system.  This snippet can be added to your `bash_profile` or equivalent.
+
+	key_file=~/.ssh/id_rsa
+
+	# Add if not already added
+	[[ -z $(ssh-add -L | grep $key_file) ]] && ssh-add $key_file
+	
+Once you do this, you should be able to log into the virtual environment and run the following command to verify everything is working as it should:
+
+	> ssh -T git@github.com
+	Hi _______! You've successfully authenticated, but GitHub does not provide shell access.
+	
+From here on, as long as your host machine adds your GitHub RSA key to the default SSH agent, it will be available for use inside the environment.
+
+#### Running commands with `root` permissions.
 
 You shouldn't need to do this often, but if you ever want to test-drive a package that isn't installed, it may be necessary.  In the case that you do find that something is not installed in the environment by default, please create an issue so that it may be considered.  
 
