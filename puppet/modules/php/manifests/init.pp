@@ -11,13 +11,4 @@ class php (
         ensure  => present,
     }
 
-    file { "/etc/php.ini":
-        ensure  => present,
-        content => template("php/php.ini.erb"),
-        owner   => root,
-        group   => root,
-        mode    => 644,
-        notify  => Service["httpd"],
-    }
-
 }

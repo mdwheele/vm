@@ -1,23 +1,11 @@
 class httpd (
 
-    $test = false,
-    $type = "ip",
-
 ) {
 
     $packages = [ "httpd" ]
 
     package { $packages:
         ensure  => present,
-    }
-
-    file { "/etc/httpd/conf/httpd.conf":
-        ensure  => present,
-        content => template("httpd/httpd.conf.erb"),
-        owner   => apache,
-        group   => apache,
-        mode    => 600,
-        notify  => Service["httpd"],
     }
 
     file { "/etc/mime.types":

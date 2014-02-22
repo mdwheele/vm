@@ -21,12 +21,6 @@ Package {
 node default {
 
     include selinux::disable, epel, devtools, rpmforge
+    include php, httpd, mysql, phpmyadmin
 
-    # LAMP Stack. Wrap this. Durty durty.
-    class { "php" :
-        error_verbosity => true,
-        display_errors => true,
-    }
-
-    include httpd, mysql, phpmyadmin
 }
