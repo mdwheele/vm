@@ -1,13 +1,13 @@
 class phpmyadmin {
 
-    include phpmyadmin::download
+    require phpmyadmin::download
 
     file { "/usr/share/phpmyadmin/config.inc.php" :
         ensure  => present,
         content => template("phpmyadmin/config.inc.php.erb"),
         owner   => vagrant,
         group   => vagrant,
-        mode    => 644,
+        mode    => 664,
         notify  => Service["httpd"],
         require => Class["phpmyadmin::download"]
     }
@@ -17,7 +17,7 @@ class phpmyadmin {
         content => template("phpmyadmin/phpmyadmin.conf.erb"),
         owner   => vagrant,
         group   => vagrant,
-        mode    => 644,
+        mode    => 664,
         notify  => Service["httpd"],
         require => Class["phpmyadmin::download"]
     }

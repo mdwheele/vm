@@ -2,9 +2,9 @@ class phpmyadmin::download {
 
     file { "/usr/share/phpmyadmin":
         ensure  => "directory",
-        owner   => "apache",
-        group   => "apache",
-        mode    => 700
+        owner   => "vagrant",
+        group   => "vagrant",
+        mode    => 775
     }
 
     exec { "phpmyadmin_wget":
@@ -16,7 +16,7 @@ class phpmyadmin::download {
 
     exec { "phpmyadmin_unzip":
         cwd     => "/usr/share/phpmyadmin",
-        command => "/bin/tar xvf /tmp/phpmyadmin-stable.tar.gz --strip-components=1 && chown -R apache:apache .",
+        command => "/bin/tar xvf /tmp/phpmyadmin-stable.tar.gz --strip-components=1 && chown -R vagrant:vagrant .",
         require => Exec["phpmyadmin_wget"]
     }
 
