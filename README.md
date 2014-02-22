@@ -13,6 +13,7 @@ This repository is for the S.S. Failboat, a local development environment mainta
 * phpMyAdmin (latest)
 * Composer (latest)
 * PHPUnit (latest)
+* WP-CLI
 
 
 ## Running the Environment
