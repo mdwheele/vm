@@ -22,5 +22,6 @@ node default {
 
     include selinux::disable, epel, devtools, rpmforge
     include php, httpd, mysql, phpmyadmin
+    include phpunit, composer
 
 }

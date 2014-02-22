@@ -9,8 +9,10 @@ This repository is for the S.S. Failboat, a local development environment mainta
 * PHP 5.3.3
 * MySQL 5.1
 * Apache 2.2
-* phpMyAdmin (Latest Stable)
 * Git 1.7
+* phpMyAdmin (latest)
+* Composer (latest)
+* PHPUnit (latest)
 
 
 ## Running the Environment
