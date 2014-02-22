@@ -2,26 +2,15 @@
 # defaults.  To add nodes or additional specification create files in
 # manifests/ which will be included.
 
-notify {"This is Puppet environment $environment.": }
-
-# Default exec parameters
-
 Exec {
     path => ["/bin", "/sbin", "/usr/bin", "/usr/sbin"],
 }
-
-# Default Package parameters
-
-Package {
-    ensure => installed,
-}
-
-# Packages
 
 node default {
 
     include selinux::disable, epel, devtools, rpmforge
     include php, httpd, mysql, phpmyadmin
-    include phpunit, composer
+    include phpunit, composer, wp-cli
+    include dotfiles
 
 }
