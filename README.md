@@ -62,7 +62,11 @@ So, all that said, it takes about 8-10 minutes to provision on a circa 2010 Macb
 	
 ## Usage
 
-### Running commands with `root` permissions
+### Common Tasks
+
+This are things you might do regularly in the environment.  If there's no documentation for how to do something you want, please suggest additions!
+
+#### Running commands with `root` permissions
 
 You shouldn't need to do this often, but if you ever want to test-drive a package that isn't installed, it may be necessary.  In the case that you do find that something is not installed in the environment by default, please create an issue so that it may be considered.  
 
@@ -71,6 +75,23 @@ The `vagrant` user is, by default, added to `/etc/sudoers`.  To execute a comman
 	> sudo vi /etc/hosts  
 
 This would open `/etc/hosts` using the `vi` text editor with `root` permissions.
+
+### "Oh no!" Moments
+
+#### You accidentally blew something up and the environment doesn't work anymore.
+
+First, please open an issue here with as much information as possible about what you were trying to do.  I'll help where I can to get you back on the right track.  However, sometimes your copy of the environment might deviate far away from the standard, Puppet blows chunks or whatever.
+
+To attempt a reprovision of the environment, run the following command while inside the repository folder:
+
+	> vagrant provision
+	
+If after reprovisioning the virtual environment things aren't working, there is always the option of destroying the environment and re-creating it from scratch.  Please note that this will **NOT** harm any code you were working on.  However, this **WILL** destroy any databases you had.  
+
+To destroy the environment and recreate it, run the following command sequence:
+
+	> vagrant destroy
+	> vagrant up
 
 ## Development
 
