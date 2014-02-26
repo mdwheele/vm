@@ -1,0 +1,14 @@
+class php (
+
+    $error_verbosity = true,
+    $display_errors = true,
+
+) {
+
+    $packages = [ "php", "php-pdo", "php-gd", "php-xml", "php-odbc", "php-soap", "php-xmlrpc", "php-pear", "php-mysql", "php-ldap", "php-mbstring", "php-imap", "php-dba", "php-snmp", "php-pecl-ncurses", "php-bcmath", "php-mcrypt" ]
+
+    package { $packages:
+        ensure  => present,
+    }
+
+}
