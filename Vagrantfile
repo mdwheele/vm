@@ -8,17 +8,13 @@ Vagrant.configure("2") do |config|
     config.vm.hostname = "local.dev"
 
     config.vm.network :private_network, ip: "192.168.33.10"
-    config.vm.network :forwarded_port, guest: 80, host: 8080
-
-    config.ssh.forward_agent = true
+    config.vm.network :forwarded_port, guest: 80, host: 8080, host_ip: "127.0.0.1"
 
     config.vm.synced_folder "~/Sites", "/var/www/html"
 
-    config.vm.provider :virtualbox do |vb|
-        vb.customize [
-            "modifyvm", :id,
-            "--memory", "1024"
-        ]
+    config.vm.provider :virtualbox do |vm|
+        vm.name = "local_dev_vm"
+        vm.memory = 1024
     end
 
     # Copy host .gitconfig to Vagrant home directory.
