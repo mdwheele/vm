@@ -1,4 +1,4 @@
-"VM", a local development environment.
+VM
 ===
 
 ## Features
