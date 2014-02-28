@@ -144,8 +144,8 @@ buildphp() {
 }
 
 buildphp-usage() {
-    echo "Usage: $0 hoist [version]"
-    echo "  e.g. $0 hoist 5.3.3"
+    echo "Usage: $0 buildphp [version]"
+    echo "  e.g. $0 buildphp 5.3.3"
     exit
 }
 
@@ -164,8 +164,8 @@ function phpversion () {
 }
 
 phpversion-usage() {
-    echo "Usage: $0 turn [version]"
-    echo "  e.g. $0 turn 5.3.3"
+    echo "Usage: $0 phpversion [version]"
+    echo "  e.g. $0 phpversion 5.3.3"
     exit
 }
 

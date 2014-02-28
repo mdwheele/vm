@@ -1,8 +1,8 @@
 class devtools::vm {
 
-    file { '/usr/bin/failboat':
+    file { '/usr/bin/vm':
        ensure => 'link',
-       target => '/vagrant/puppet/scripts/failboat',
+       target => '/vagrant/puppet/scripts/vm',
     }
 
 }
