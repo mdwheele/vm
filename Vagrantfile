@@ -19,9 +19,10 @@ Vagrant.configure("2") do |config|
         vm.memory = 1024
     end
 
-    # Copy host .gitconfig to Vagrant home directory.
-    config.vm.provision(:shell, :inline => "/bin/cat <<'EOT' >/home/vagrant/.gitconfig \n#{File.read("#{Dir.home}/.gitconfig")}\nEOT") if File.exist?("#{Dir.home}/.gitconfig")
-    config.vm.provision(:shell, :inline => "echo 'Your Failboat is leaking:\n#{Dir.home}/.gitconfig does not exist!!\nYou may need to configure git!!!'") unless File.exist?("#{Dir.home}/.gitconfig")
+    config.vm.provision "shell" do |s|
+        s.path = "shell/initial-setup.sh"
+        s.args = "/vagrant"
+    end
 
     config.vm.provision :puppet do |puppet|
         puppet.module_path = "puppet/modules"

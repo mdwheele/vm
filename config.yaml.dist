@@ -1,0 +1,10 @@
+---
+vagrant-config:
+    vm:
+        synced_folder:
+            id: vagrant-root
+            source: ./
+            target: /var/www
+    ssh:
+        private_key_path: null
+        forward_agent: false

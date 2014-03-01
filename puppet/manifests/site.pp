@@ -6,11 +6,22 @@ Exec {
     path => ["/bin", "/sbin", "/usr/bin", "/usr/sbin"],
 }
 
+stage { "repos" :
+    before  => Stage["main"]
+}
+
 node default {
 
     # Yum Repos
-    include yum::repo::epel
-    include yum::repo::rpmforge
+    $repos = [
+        yum::repo::epel,
+        yum::repo::rpmforge,
+        yum::repo::local
+    ]
+
+    class { $repos :
+        stage   => repos
+    }
 
     # OS Packages
     include selinux::disable, devtools

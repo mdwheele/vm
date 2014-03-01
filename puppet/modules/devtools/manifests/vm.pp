@@ -2,7 +2,7 @@ class devtools::vm {
 
     file { '/usr/bin/vm':
        ensure => 'link',
-       target => '/vagrant/puppet/scripts/vm',
+       target => '/vagrant/shell/vm',
     }
 
 }
