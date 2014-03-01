@@ -6,6 +6,12 @@ Exec {
     path => ["/bin", "/sbin", "/usr/bin", "/usr/sbin"],
 }
 
+File {
+  owner => 'vagrant',
+  group => 'vagrant',
+  mode  => '0777',
+}
+
 stage { "repos" :
     before  => Stage["main"]
 }

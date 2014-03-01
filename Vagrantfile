@@ -10,8 +10,7 @@ Vagrant.configure("2") do |config|
     config.vm.network :private_network, ip: "192.168.33.10"
     config.vm.network :forwarded_port, guest: 80, host: 8080, host_ip: "127.0.0.1"
 
-    config.vm.synced_folder "~/Sites", "/var/www/html"
-    config.vm.synced_folder "./files/rpm", "/repository"
+    config.vm.synced_folder "~/Sites", "/var/www/html", :mount_options => ["dmode=777","fmode=666"]
 
     config.ssh.forward_agent = true
 
