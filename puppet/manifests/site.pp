@@ -16,6 +16,7 @@ node default {
     $repos = [
         yum::repo::epel,
         yum::repo::rpmforge,
+        yum::repo::remi,
         yum::repo::local
     ]
 

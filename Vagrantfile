@@ -11,6 +11,7 @@ Vagrant.configure("2") do |config|
     config.vm.network :forwarded_port, guest: 80, host: 8080, host_ip: "127.0.0.1"
 
     config.vm.synced_folder "~/Sites", "/var/www/html"
+    config.vm.synced_folder "./files/rpm", "/repository"
 
     config.ssh.forward_agent = true
 
@@ -30,4 +31,6 @@ Vagrant.configure("2") do |config|
         puppet.manifest_file  = "site.pp"
         puppet.options = "--hiera_config /vagrant/hiera.yaml"
     end
+
+    config.vm.provision :shell, :path => "shell/update.sh"
 end

@@ -2,6 +2,7 @@ class devtools {
 
     exec { "groupinstall_development_tools" :
         command => "yum -y groupinstall 'Development Tools'",
+        unless  => "yum list installed | grep rpm-build",
         require => Yumrepo["epel", "rpmforge", "local"]
     }
 
@@ -13,7 +14,9 @@ class devtools {
         "xmlto",
         "openssl-devel",
         "rpmdevtools",
-        "createrepo",
+
+        # General,
+        "git",
 
         # PHP...
         "vim-X11",

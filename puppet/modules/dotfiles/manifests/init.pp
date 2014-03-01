@@ -1,8 +1,11 @@
 class dotfiles {
 
-    file { "/home/vagrant/.bash_profile":
-        mode => 644,
-        source => "puppet:///modules/dotfiles/.bash_profile",
+    exec { "dotfiles" :
+        cwd     => "/home/vagrant",
+        command => "cp -r /vagrant/files/dotfiles/.[a-zA-Z0-9]* /home/vagrant/ \
+                    && chown -R vagrant /home/vagrant/.[a-zA-Z0-9]*",
+        onlyif  => 'test -d /vagrant/files/dotfiles',
+        returns => [0, 1]
     }
 
 }
