@@ -10,3 +10,6 @@
 [submodule "puppet/modules/stdlib"]
 	path = puppet/modules/stdlib
 	url = git@github.com:puppetlabs/puppetlabs-stdlib.git
+[submodule "puppet/modules/yum"]
+	path = puppet/modules/yum
+	url = git@github.com:example42/puppet-yum.git

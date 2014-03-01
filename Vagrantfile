@@ -12,6 +12,8 @@ Vagrant.configure("2") do |config|
 
     config.vm.synced_folder "~/Sites", "/var/www/html"
 
+    config.ssh.forward_agent = true
+
     config.vm.provider :virtualbox do |vm|
         vm.name = "local_dev_vm"
         vm.memory = 1024

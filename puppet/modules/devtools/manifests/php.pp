@@ -1,8 +1,6 @@
 class devtools::php {
 
     $packages = [
-        "gcc",
-        "gcc-c++",
         "vim-X11",
         "vim-common",
         "vim-enhanced",
@@ -25,12 +23,12 @@ class devtools::php {
         "readline-devel",
         "libtidy-devel",
         "libxslt-devel",
-        "libmcrypt-devel",
-        "make"
+        "libmcrypt-devel"
     ]
 
     package { $packages :
         ensure => installed,
+        require => Class["devtools::rpmbuild"]
     }
 
 }
