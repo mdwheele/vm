@@ -1,7 +1,7 @@
 class devtools::rpmbuild {
 
     exec { "groupinstall_development_tools" :
-        command => "yum groupinstall 'Development Tools'",
+        command => "yum -y groupinstall 'Development Tools'",
         unless  => "yum list installed | grep rpm-build"
     }
 
@@ -14,7 +14,7 @@ class devtools::rpmbuild {
     ]
 
     package { $packages :
-        ensure  => installed,
+        ensure  => latest,
         require => Exec["groupinstall_development_tools"]
     }
 

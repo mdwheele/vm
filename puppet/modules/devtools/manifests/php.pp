@@ -13,7 +13,6 @@ class devtools::php {
         "libicu-devel",
         "t1lib-devel",
         "aspell-devel",
-        "openssl-devel",
         "bzip2-devel",
         "libcurl-devel",
         "libjpeg-turbo-devel",
@@ -27,7 +26,7 @@ class devtools::php {
     ]
 
     package { $packages :
-        ensure => installed,
+        ensure => latest,
         require => Class["devtools::rpmbuild"]
     }
 

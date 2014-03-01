@@ -8,8 +8,12 @@ Exec {
 
 node default {
 
+    # Yum Repos
+    include yum::repo::epel
+    include yum::repo::rpmforge
+
     # OS Packages
-    include selinux::disable, epel, devtools, rpmforge
+    include selinux::disable, devtools
 
     # Application Stack
     include php, httpd, mysql::server, phpmyadmin

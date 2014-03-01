@@ -8,7 +8,7 @@ class hhvm  {
     }
 
     package { "hhvm" :
-        ensure  => latest,
+        ensure  => present,
         require => Yumrepo["hop5"]
     }
 
