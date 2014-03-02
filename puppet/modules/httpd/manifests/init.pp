@@ -17,6 +17,15 @@ class httpd (
         notify  => Service["httpd"],
     }
 
+    file { "/etc/httpd/conf.d/default.conf":
+        ensure  => present,
+        source => "puppet:///modules/httpd/default.conf",
+        owner   => root,
+        group   => root,
+        mode    => 644,
+        notify  => Service["httpd"],
+    }
+
     file { "/etc/mime.types":
         ensure  => present,
         source  => "puppet:///modules/httpd/mime.types",

@@ -151,7 +151,7 @@ buildphp-usage() {
 
 ######################################################
 #
-#
+# PHP Version Switcher... One day :(
 #
 ######################################################
 
@@ -166,6 +166,57 @@ function phpversion () {
 phpversion-usage() {
     echo "Usage: $0 phpversion [version]"
     echo "  e.g. $0 phpversion 5.3.3"
+    exit
+}
+
+
+
+######################################################
+#
+# PHP Version Switcher... One day :(
+#
+######################################################
+
+function serve () {
+    if [[ $1 == "." ]]; then
+        path=$(pwd)
+    elif [ -z $1 ]; then
+        path=$(pwd)
+    elif [[ $1 == "reset" ]]; then
+        path="/var/www/html"
+    else
+        path=$(readlink -e $1)
+    fi
+
+    # If path is not a directory, bail.
+    if [ ! -d "$path" ]; then
+        echo "Error: $path is not a valid directory."
+        echo ""
+
+        serve-usage
+    fi
+
+vhost="<VirtualHost *:80>
+   ServerName localhost
+   DocumentRoot $path
+   <Directory \"$path\">
+       Options Indexes FollowSymLinks MultiViews
+       AllowOverride All
+       Order allow,deny
+       Allow from all
+   </Directory>
+</VirtualHost>"
+
+    echo "Serving $path"
+    echo "$vhost" | sudo tee /etc/httpd/conf.d/default.conf >/dev/null
+
+    echo "Restarting the web server"
+    sudo /sbin/service httpd restart
+}
+
+serve-usage() {
+    echo "Usage: $0 serve [valid-path]"
+    echo "  e.g. $0 serve ."
     exit
 }
 
