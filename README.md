@@ -9,7 +9,7 @@ VM
 * MySQL 5.1
 * Apache 2.2
 * HHVM (Used for running Composer)
-* Git 1.7
+* Git 1.9
 * phpMyAdmin (latest)
 * Composer (latest)
 * PHPUnit (latest)
