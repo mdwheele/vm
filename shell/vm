@@ -196,6 +196,8 @@ function serve () {
         serve-usage
     fi
 
+    # This is brittle. No checking to make sure this is actually a vhost configuration.
+    # Probably should start thinking about a PHAR or something more robust for a CLI utility.
     if [ -f "$path" ]; then
 vhost=$(cat $path)
     else
