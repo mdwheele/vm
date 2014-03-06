@@ -189,13 +189,16 @@ function serve () {
     fi
 
     # If path is not a directory, bail.
-    if [ ! -d "$path" ]; then
-        echo "Error: $path is not a valid directory."
+    if [ ! -d "$path" ] && [ ! -f "$path" ]; then
+        echo "Error: $path is not a valid directory or file."
         echo ""
 
         serve-usage
     fi
 
+    if [ -f "$path" ]; then
+vhost=$(cat $path)
+    else
 vhost="<VirtualHost *:80>
    ServerName localhost
    DocumentRoot $path
@@ -206,6 +209,7 @@ vhost="<VirtualHost *:80>
        Allow from all
    </Directory>
 </VirtualHost>"
+    fi
 
     echo "Serving $path"
     echo "$vhost" | sudo tee /etc/httpd/conf.d/default.conf >/dev/null
