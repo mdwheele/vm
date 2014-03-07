@@ -14,6 +14,7 @@ class devtools {
         "xmlto",
         "openssl-devel",
         "rpmdevtools",
+        "mock",
 
         # General,
         "git",
