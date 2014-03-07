@@ -39,6 +39,25 @@ node default {
     # Development Tools
     include hhvm, phpunit, composer, wp-cli
 
+    # Jenkins Hack Setup
+    class { 'jenkins':
+        config_hash => {
+            'JENKINS_PORT' => { 'value' => '8080' },
+            'JENKINS_ARGS' => { 'value' => '--prefix=/jenkins --httpListenAddress=127.0.0.1' }
+        },
+        plugin_hash => {
+            'git' => {},
+            'promoted-builds' => {},
+            'credentials' => {},
+            'parameterized-trigger' => {},
+            'ssh-credentials' => {},
+            'git-client' => {},
+            'scm-api' => {},
+            'token-macro' => {},
+            'multiple-scms' => {}
+        }
+    }
+
     # User Environment Configuration
     include dotfiles
 
