@@ -5,7 +5,7 @@ class yum::repo::local {
     }
 
     exec { "build_local_repository" :
-        command => "sudo mkdir -p /repository && sudo cp -r /vagrant/files/rpm/*.rpm /repository/ && createrepo /repository",
+        command => "sudo rm /repository && sudo mkdir -p /repository && sudo cp -r /vagrant/files/rpm/*.rpm /repository/ && sudo createrepo /repository && sudo yum clean all",
         require => Package["createrepo"]
     }
 
