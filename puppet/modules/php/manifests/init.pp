@@ -20,7 +20,6 @@ class php (
         "php-imap",
         "php-dba",
         "php-snmp",
-        "php-pecl-ncurses",
         "php-bcmath",
         "php-mcrypt"
     ]
