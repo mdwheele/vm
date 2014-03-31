@@ -14,7 +14,7 @@ class php (
         "php-soap",
         "php-xmlrpc",
         "php-pear",
-        "php-mysql",
+        "php-mysqlnd",
         "php-ldap",
         "php-mbstring",
         "php-imap",
