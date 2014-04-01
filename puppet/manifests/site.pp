@@ -12,6 +12,11 @@ File {
   mode  => '0777',
 }
 
+user { "vagrant":
+	ensure => present,
+    groups => ["vagrant", "mock"]
+}
+
 stage { "repos" :
     before  => Stage["main"]
 }
@@ -38,6 +43,9 @@ node default {
 
     # Development Tools
     include hhvm, phpunit, composer, wp-cli
+
+	# Node Tools
+
 
     # Jenkins Hack Setup
     class { 'jenkins':

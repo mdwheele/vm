@@ -10,13 +10,15 @@ Vagrant.configure("2") do |config|
     config.vm.network :private_network, ip: "192.168.33.10"
     config.vm.network :forwarded_port, guest: 80, host: 8080, host_ip: "127.0.0.1"
 
-    config.vm.synced_folder "~/Sites", "/var/www/html", :mount_options => ["dmode=777","fmode=777"]
+    #config.vm.synced_folder "~/Sites", "/var/www/html", :mount_options => ["dmode=777","fmode=777"]
 
     config.ssh.forward_agent = true
 
     config.vm.provider :virtualbox do |vm|
         vm.name = "local_dev_vm"
-        vm.memory = 1024
+        vm.memory = 4096
+        vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        vm.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     end
 
     config.vm.provision "shell" do |s|

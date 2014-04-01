@@ -8,6 +8,12 @@ class httpd (
         ensure  => present,
     }
 
+    file { "/var/www/html":
+        ensure => directory,
+        owner  => vagrant,
+        group  => vagrant
+    }
+
     file { "/etc/httpd/conf/httpd.conf":
         ensure  => present,
         content => template("httpd/httpd.conf.erb"),
