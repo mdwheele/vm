@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
 
     config.vm.provider :virtualbox do |vm|
         vm.name = "local_dev_vm"
-        vm.memory = 4096
+        vm.customize ["modifyvm", :id, "--memory", "4096"]
         vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
         vm.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     end
