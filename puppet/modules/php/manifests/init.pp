@@ -1,7 +1,7 @@
 class php (
 
     $error_verbosity = true,
-    $display_errors = true,
+    $display_errors = true
 
 ) {
 

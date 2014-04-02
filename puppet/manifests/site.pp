@@ -13,7 +13,7 @@ File {
 }
 
 user { "vagrant":
-	ensure => present,
+    ensure => present,
     groups => ["vagrant", "mock"]
 }
 
@@ -44,7 +44,13 @@ node default {
     # Development Tools
     include hhvm, phpunit, composer, wp-cli
 
-	# Node Tools
+    # Node Tools
+    include nodejs
+
+    nodejs::npm { '/usr/local/bin:gulp':
+        ensure      => present,
+        install_opt => "-g"
+    }
 
 
     # Jenkins Hack Setup
