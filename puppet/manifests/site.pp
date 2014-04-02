@@ -52,7 +52,6 @@ node default {
         install_opt => "-g"
     }
 
-
     # Jenkins Hack Setup
     class { 'jenkins':
         config_hash => {
