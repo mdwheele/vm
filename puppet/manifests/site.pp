@@ -7,9 +7,9 @@ Exec {
 }
 
 File {
-  owner => 'vagrant',
-  group => 'vagrant',
-  mode  => '0777',
+    owner => 'vagrant',
+    group => 'vagrant',
+    mode  => '0777',
 }
 
 user { "vagrant":
@@ -51,7 +51,6 @@ node default {
         ensure      => present,
         install_opt => "-g"
     }
-
 
     # Jenkins Hack Setup
     class { 'jenkins':
