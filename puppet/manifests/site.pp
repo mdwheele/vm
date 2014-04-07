@@ -42,7 +42,7 @@ node default {
     include php, httpd, mysql::server, phpmyadmin
 
     # Development Tools
-    include hhvm, phpunit, composer, wp-cli
+    include hhvm, phpunit, composer, wp-cli, php-cs-fixer
 
     # Node Tools
     include nodejs
