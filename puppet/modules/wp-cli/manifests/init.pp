@@ -1,7 +1,7 @@
 class wp-cli {
 
     exec { "install-wp-cli" :
-        command => "curl -L https://raw.github.com/wp-cli/builds/gh-pages/phar/wp-cli.phar > /usr/local/bin/wp-cli",
+        command => "curl -L https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar > /usr/local/bin/wp-cli",
         creates => "/usr/local/bin/wp-cli",
         require => Class["php"]
     }
