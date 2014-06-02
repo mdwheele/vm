@@ -48,6 +48,10 @@ This step will take a significant amount of time to execute the first time you r
 
 So, all that said, it takes about 8-10 minutes to provision on a circa 2010 Macbook Pro.  Just let it do its thang' and **do not stop it whatever you do**!
 
+*Provision the VM*
+
+	> vagrant provision
+
 *Starting the environment*
 
 	> vagrant up
@@ -69,6 +73,19 @@ So, all that said, it takes about 8-10 minutes to provision on a circa 2010 Macb
 ### Common Tasks
 
 This are things you might do regularly in the environment.  If there's no documentation for how to do something you want, please suggest additions!
+
+#### Installing other rpms
+
+You can download rpms to add to the vm and then copy them to your `<path to vm repo>/files/rpm` directory.
+
+#### Adding custom configuration files
+
+If you want to add your bash config, your git config, or your phpstorm configuration, you can put them in the `<path to vm repo>/files/dotfiles` directory.
+
+You might want to add this alias to your .bashrc file
+
+	alias web='cd /var/www/html'
+
 
 #### Where's phpMyAdmin?!
 
