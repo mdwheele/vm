@@ -5,7 +5,6 @@ After you have pulled the VM project and you're ready to begin your work in the 
 
 1. SSH into the VM to get to your filespace
   
-
         > vagrant ssh 
   
 
@@ -29,14 +28,18 @@ After you have pulled the VM project and you're ready to begin your work in the 
 
 This is an example for a laravel project.  The actual environment variables may vary based on project
 
-        <?php
+```
+<?php
 
-        return ['APP_ENV' => 'local',
-            'DB_HOST' => 'localhost',
-            'DB_NAME' => 'vhost-config',
-            'DB_USERNAME' => 'root',
-            'DB_PASSWORD' => ''];
-      
+return [
+    'APP_ENV' => 'local',
+    'DB_HOST' => 'localhost',
+    'DB_NAME' => 'vhost-config',
+    'DB_USERNAME' => 'root',
+    'DB_PASSWORD' => ''
+];
+```
+
 6. Adjust permissions in places where files are updated
 
         > chmod -R a+w app/storage
