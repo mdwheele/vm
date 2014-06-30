@@ -87,6 +87,11 @@ You might want to add this alias to your .bashrc file
 
 	alias web='cd /var/www/html'
 
+#### Checking mail sent by PHP
+
+If your application uses sendmail to send email, that path has been modified to instead, `tee` to a log file in `/tmp/php-mail`.
+
+The easiest way to monitor that file is to run: `> tail -f /tmp/php-mail`.
 
 #### Where's phpMyAdmin?!
 

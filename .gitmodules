@@ -19,3 +19,6 @@
 [submodule "puppet/modules/nodejs"]
 	path = puppet/modules/nodejs
 	url = git@github.com:puppetlabs/puppetlabs-nodejs.git
+[submodule "puppet/modules/mailcatcher"]
+	path = puppet/modules/mailcatcher
+	url = git@github.com:actionjack/puppet-mailcatcher.git
