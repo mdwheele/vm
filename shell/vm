@@ -210,6 +210,19 @@ vhost="<VirtualHost *:80>
        Order allow,deny
        Allow from all
    </Directory>
+</VirtualHost>
+<VirtualHost *:443>
+   ServerName localhost
+   DocumentRoot $path
+   SSLEngine on
+   SSLCertificateFile /etc/httpd/ssl/ssl.crt
+   SSLCertificateKeyFile /etc/httpd/ssl/ssl.key
+   <Directory \"$path\">
+       Options Indexes FollowSymLinks MultiViews
+       AllowOverride All
+       Order allow,deny
+       Allow from all
+   </Directory>
 </VirtualHost>"
     fi
 
