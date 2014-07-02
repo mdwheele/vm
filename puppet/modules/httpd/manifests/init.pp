@@ -24,12 +24,12 @@ class httpd (
     }
 
     file { "/etc/httpd/conf/ssl.conf":
-      ensure  => present,
-      content => template("httpd/ssl.conf.erb"),
-      owner   => root,
-      group   => root,
-      mode    => 644,
-      notify  => Service["httpd"],
+        ensure  => present,
+        content => template("httpd/ssl.conf.erb"),
+        owner   => root,
+        group   => root,
+        mode    => 644,
+        notify  => Service["httpd"],
     }
 
     file { "/etc/httpd/conf.d/default.conf":
@@ -41,22 +41,29 @@ class httpd (
       notify  => Service["httpd"],
     }
 
+    file { "/etc/httpd/ssl":
+        ensure  => directory,
+        owner   => root,
+        group   => root,
+        mode    => 644,
+    }
+
     file { "/etc/httpd/ssl/ssl.key":
-      ensure  => present,
-      source => "puppet:///modules/httpd/ssl.key",
-      owner   => root,
-      group   => root,
-      mode    => 644,
-      notify  => Service["httpd"],
+        ensure  => present,
+        source => "puppet:///modules/httpd/ssl.key",
+        owner   => root,
+        group   => root,
+        mode    => 644,
+        notify  => Service["httpd"],
     }
 
     file { "/etc/httpd/ssl/ssl.crt":
-      ensure  => present,
-      source => "puppet:///modules/httpd/ssl.crt",
-      owner   => root,
-      group   => root,
-      mode    => 644,
-      notify  => Service["httpd"],
+        ensure  => present,
+        source => "puppet:///modules/httpd/ssl.crt",
+        owner   => root,
+        group   => root,
+        mode    => 644,
+        notify  => Service["httpd"],
     }
 
     file { "/etc/httpd/conf.d/jenkins-proxy.conf":
