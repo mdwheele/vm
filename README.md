@@ -48,14 +48,14 @@ This step will take a significant amount of time to execute the first time you r
 
 So, all that said, it takes about 8-10 minutes to provision on a circa 2010 Macbook Pro.  Just let it do its thang' and **do not stop it whatever you do**!
 
-*Provision the VM*
-This re-runs the initial setup of the vm and updates the yum packages.  Run this if you unpack an rpm into the `/files/rpm` directory.
-
-	> vagrant provision
-
 *Starting the environment*
 
 	> vagrant up
+
+*Provision the VM*
+This re-runs the initial setup of the vm and updates the yum packages.  Run this if you unpack an rpm into the `/files/rpm` directory. The first time you run `vagrant up`, it will be provisioned, but never after.
+
+	> vagrant provision
 	
 *Logging into the VM*
 
