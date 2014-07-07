@@ -36,7 +36,7 @@ node default {
     }
 
     # OS Packages
-    include selinux::disable, devtools
+    include selinux::disable, devtools, ntp
 
     # Application Stack
     include php, httpd, mysql::server, phpmyadmin
