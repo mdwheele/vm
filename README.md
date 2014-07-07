@@ -31,7 +31,7 @@ After installing Vagrant, you can clone this repository anywhere you choose.  Th
 
 The following command will clone the repository to your current working directory:
 
-```> git clone --recursive git@github.com:mdwheele/vm.git```
+```git clone --recursive git@github.com:mdwheele/vm.git```
 
 **Change directories into the cloned repository.**
 
@@ -48,26 +48,26 @@ This step will take a significant amount of time to execute the first time you r
 
 So, all that said, it takes about 8-10 minutes to provision on a circa 2010 Macbook Pro.  Just let it do its thang' and **do not stop it whatever you do**!
 
-*Provision the VM*
-This re-runs the initial setup of the vm and updates the yum packages.  Run this if you unpack an rpm into the `/files/rpm` directory.
-
-	> vagrant provision
-
 *Starting the environment*
 
-	> vagrant up
+	vagrant up
+
+*Provision the VM*
+This re-runs the initial setup of the vm and updates the yum packages.  Run this if you unpack an rpm into the `/files/rpm` directory. The first time you run `vagrant up`, it will be provisioned, but never after.
+
+	vagrant provision
 	
 *Logging into the VM*
 
-	> vagrant ssh
+	vagrant ssh
 	
 *Stopping the environment*
 
-	> vagrant halt
+	vagrant halt
 	
 *Destroying the environment*
 
-	> vagrant destroy
+	vagrant destroy
 	
 ## Usage
 
@@ -91,7 +91,7 @@ You might want to add this alias to your .bashrc file
 
 If your application uses sendmail to send email, that path has been modified to instead, `tee` to a log file in `/tmp/php-mail`.
 
-The easiest way to monitor that file is to run: `> tail -f /tmp/php-mail`.
+The easiest way to monitor that file is to run: `tail -f /tmp/php-mail`.
 
 #### Where's phpMyAdmin?!
 
@@ -145,7 +145,7 @@ You shouldn't need to do this often, but if you ever want to test-drive a packag
 
 The `vagrant` user is, by default, added to `/etc/sudoers`.  To execute a command with `root` permissions, do as follows:
 
-	> sudo vi /etc/hosts  
+	sudo vi /etc/hosts  
 
 This would open `/etc/hosts` using the `vi` text editor with `root` permissions.
 
@@ -157,14 +157,14 @@ First, please open an issue here with as much information as possible about what
 
 To attempt a reprovision of the environment, run the following command while inside the repository folder:
 
-	> vagrant provision
+	vagrant provision
 	
 If after reprovisioning the virtual environment things aren't working, there is always the option of destroying the environment and re-creating it from scratch.  Please note that this will **NOT** harm any code you were working on.  However, this **WILL** destroy any databases you had.  
 
 To destroy the environment and recreate it, run the following command sequence:
 
-	> vagrant destroy
-	> vagrant up
+	vagrant destroy
+	vagrant up
 
 ## Development
 
