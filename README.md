@@ -22,6 +22,7 @@ This is a [Vagrant](http://www.vagrantup.com/) development environment.  Vagrant
 
 - [Installing VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 - [Installing Vagrant](http://docs.vagrantup.com/v2/installation/index.html)
+- [Installing Vagrant VBGuest](https://github.com/dotless-de/vagrant-vbguest) (required plugin for sanity)
 
 ### Cloning the Repository
 

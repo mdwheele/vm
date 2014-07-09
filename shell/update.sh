@@ -13,6 +13,4 @@ else
     echo "There were no updates! Huzzah."
 fi
 
-echo "Rebuilding VirtualBox Guest Additions. Going, going..."
-sudo /etc/init.d/vboxadd setup
 echo "Gone!"
