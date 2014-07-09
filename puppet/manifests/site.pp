@@ -45,7 +45,7 @@ node default {
     include hhvm, phpunit, composer, wp-cli, php-cs-fixer
 
     # Node Tools
-    include nodejs
+    include nodejs, phantomjs
 
     nodejs::npm { '/usr/local/bin:gulp':
         ensure      => present,
