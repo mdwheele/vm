@@ -1,0 +1,2 @@
+require:
+  - commands/theme-test/wp-cli-theme-test-command.php

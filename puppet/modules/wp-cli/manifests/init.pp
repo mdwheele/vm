@@ -17,4 +17,22 @@ class wp-cli {
         require => Exec["install-wp-cli"]
     }
 
+    file { "/home/vagrant/.wp-cli":
+        ensure => directory
+    }
+
+    file { "/home/vagrant/.wp-cli/commands":
+        ensure => directory
+    }
+
+    exec { "download-wp-cli-test":
+        command => "/usr/local/bin/git clone https://github.com/pixline/wp-cli-theme-test-command.git /home/vagrant/.wp-cli/commands/theme-test",
+        creates => "/home/vagrant/.wp-cli/commands/theme-test"
+    }
+
+    file { "/home/vagrant/.wp-cli/config.yml":
+        ensure  => present,
+        source => "puppet:///modules/wp-cli/config.yml",
+    }
+
 }
