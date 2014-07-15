@@ -27,7 +27,8 @@ class wp-cli {
 
     exec { "download-wp-cli-test":
         command => "/usr/local/bin/git clone https://github.com/pixline/wp-cli-theme-test-command.git /home/vagrant/.wp-cli/commands/theme-test",
-        creates => "/home/vagrant/.wp-cli/commands/theme-test"
+        creates => "/home/vagrant/.wp-cli/commands/theme-test",
+        require => Package["git"]
     }
 
     file { "/home/vagrant/.wp-cli/config.yml":
