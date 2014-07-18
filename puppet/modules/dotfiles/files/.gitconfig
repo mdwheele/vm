@@ -1,0 +1,60 @@
+[alias]
+    # basic resets
+    r = reset
+    r1 = reset HEAD^
+    r2 = reset HEAD^^
+    rh = reset --hard
+    rh1 = reset HEAD^ --hard
+    rh2 = reset HEAD^^ --hard
+
+    # Basic aliases.
+    cl = clone
+    co = checkout
+    br = branch
+    ci = commit
+    st = status -sb
+
+    # Clone repository and all submodules.
+    c = clone --recursive
+
+    # Pull repository changes and update submodules.
+    p = !"git pull; git submodule foreach git pull origin master"
+
+    # Diff staged changes to review before commit.
+    ds = diff --staged
+
+    # Commit all changes.
+    ca = !"git add -A && git commit -a"
+
+    # Switch to branch, create if necessary.
+    go = checkout -B
+
+    # Verbose output about tags, branches or remotes.
+    tags = tag -l
+    branches = branch -a
+    remotes = remote -v
+
+    # Interactive rebase with given number of commits.
+    reb = "!r() { git rebase -i HEAD~$1; }; r"
+
+    # Credit an author on latest commit.
+    credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+
+    # Remove branches that have been merged.
+    dm = !"git branch --merged | xargs git branch -d"
+
+[apply]
+    #Detect whitespace errors when applying a patch
+    whitespace = fix
+
+[color]
+    ui = true
+
+[core]
+    autocrlf = input
+    excludesfile = /vagrant/home/.gitignore-global
+    filemode = false
+
+[push]
+    default = simple
+
