@@ -69,7 +69,24 @@ This re-runs the initial setup of the vm and updates the yum packages.  Run this
 *Destroying the environment*
 
 	vagrant destroy
-	
+
+## Upgrading
+
+Either repeat the install steps from *Cloning the Repository* on, or 
+
+```bash
+vagrant halt
+git pull
+git submodule init
+git submodule update
+vagrant up
+```
+
+If in the process you also `vagrant destroy` the box, you will also need to repeat any steps that install guest additions.
+  - In the vagrant shell: `sudo /etc/init.d/vboxadd setup`
+  - In the vm directory on your machine: `vagrant reload`
+  - `vagrant provision` to reprovision with the current configuration.
+
 ## Usage
 
 ### Common Tasks
