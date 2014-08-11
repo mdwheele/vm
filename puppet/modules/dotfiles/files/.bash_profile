@@ -6,11 +6,15 @@ if [ -f ~/.git-completion.bash ]; then
    . ~/.git-completion.bash
 fi
 
-# General command-line helpers
+# General environment command-line helpers
 alias ll="ls -lah" # List all, with human readable filesizes
+alias lf="ls -FC"
+alias l="ls -ltr"
 alias c="clear" # Typing the whole word is annoying
 alias h="cd ~/" # Go home
 alias web="cd /var/www/html" # Go to default webroot
+alias phpmail="tail -f /tmp/php-mail"
+alias githome="git rev-parse --show-toplevel"
 
 # Artisan
 alias art="php artisan"
@@ -33,6 +37,10 @@ alias pfdr="php-cs-fixer fix --dry-run --verbose --diff"
 alias pf="php-cs-fixer fix"
 
 # Testing-related aliases
-alias test="clear && phpunit"
+alias pu="clear && phpunit"
 alias behat="behat --ansi"
 
+function cept() {
+  clear
+  $(githome)/vendor/bin/codecept $*
+}
