@@ -17,6 +17,11 @@ user { "vagrant":
     groups => ["vagrant", "mock"]
 }
 
+user { "jenkins":
+    ensure => present,
+    groups => ["vagrant", "mock"]
+}
+
 stage { "repos" :
     before  => Stage["main"]
 }

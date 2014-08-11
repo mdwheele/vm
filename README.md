@@ -14,7 +14,7 @@ VM
 * Composer (latest)
 * PHPUnit (latest)
 * WP-CLI
-
+* PhantomJS
 
 ## Running the Environment
 
@@ -69,24 +69,46 @@ This re-runs the initial setup of the vm and updates the yum packages.  Run this
 *Destroying the environment*
 
 	vagrant destroy
-	
+
+## Upgrading the repository and your virtual machine
+
+Either repeat the install steps from *Cloning the Repository* on, or 
+
+**At the root of the cloned repository:**
+
+```bash
+vagrant halt
+git pull origin master
+git submodule init
+git submodule update
+vagrant up
+vagrant provision
+```
+
+When you run `vagrant up`, [Vagrant VBGuest](https://github.com/dotless-de/vagrant-vbguest) will make sure that the VirtualBox guest additions are synchronized between your host machine and the virtual machine.  Make sure this vagrant plugin is installed via the [instructions](https://github.com/dotless-de/vagrant-vbguest).
+
 ## Usage
 
 ### Common Tasks
 
 This are things you might do regularly in the environment.  If there's no documentation for how to do something you want, please suggest additions!
 
-#### Installing other rpms
+#### Installing other RPMs
 
-You can download rpms to add to the vm and then copy them to your `<path to vm repo>/files/rpm` directory.
+You can download RPMs to add to the vm and then copy them to your `<path to vm repo>/files/rpm` directory.
 
 #### Adding custom configuration files
 
-If you want to add your bash config, your git config, or your phpstorm configuration, you can put them in the `<path to vm repo>/files/dotfiles` directory.
+If you want to add any custom dotfiles, you can put them in the `<path to vm repo>/files/dotfiles` directory.
 
-You might want to add this alias to your .bashrc file
+The provisioning process will copy some useful "base" dotfiles that are part of the common virtual environment.  In addition to this, developers may place custom dotfiles in the above path that will be appended to the end of the base dotfiles.
 
-	alias web='cd /var/www/html'
+The base dotfiles are located here:
+
+* [.gitconfig](puppet/modules/dotfiles/files/.gitconfig)
+* [.bash_profile](puppet/modules/dotfiles/files/.bash_profile)
+
+Please feel free to contribute to these [base configurations](puppet/modules/dotfiles/files). If you do, be sure to leave comments above the configuration to describe what it does if it's not obvious (assume limited shell / bash scripting experience; this is not only for experienced developers, but also for folks trying to learn!)
 
 #### Checking mail sent by PHP
 
@@ -149,6 +171,14 @@ The `vagrant` user is, by default, added to `/etc/sudoers`.  To execute a comman
 	sudo vi /etc/hosts  
 
 This would open `/etc/hosts` using the `vi` text editor with `root` permissions.
+
+#### Running PhantomJS
+
+This is bad documentation, but for the purposes of running acceptance tests using a tool like Codeception or Behat, PhantomJS is installed on the virtual machine.
+
+I usually run PhantomJS in it's own "tab" (open another ssh session).  I do this because PhantomJS sends output to the terminal that makes reading acceptance tests hard (in the case I run PhantomJS as a background process).
+
+**To run PhantomJS:** `phantomjs --webdriver 4444` or as a background-process `phantomjs --webdriver 4444 &`.
 
 ### "Oh no!" Moments
 
