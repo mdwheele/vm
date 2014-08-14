@@ -93,11 +93,32 @@ When you run `vagrant up`, [Vagrant VBGuest](https://github.com/dotless-de/vagra
 
 This are things you might do regularly in the environment.  If there's no documentation for how to do something you want, please suggest additions!
 
+#### Modifying VM Resources and Configuration
+
+You can modify a few configuration settings on the VM to personalize it to your specific needs. While there are not currently too many options available, I hope to expose more at a later time.
+
+The first time you provision the repository, a distributable configuration schema is copied to the final path `config.yaml`, which is ignored from source control.
+
+This file looks like the following and is pretty self explanatory.
+
+```yaml
+---
+vm-config:
+    memory: 2048
+    host:
+        http_port: 8080
+        https_port: 8443
+    synced_folder:
+        enabled: false
+        host_path: '~/Sites'
+        guest_path: '/var/www/html'
+```
+
 #### Installing other RPMs
 
 You can download RPMs to add to the vm and then copy them to your `<path to vm repo>/files/rpm` directory.
 
-#### Adding custom configuration files
+#### Adding custom dotfiles
 
 If you want to add any custom dotfiles, you can put them in the `<path to vm repo>/files/dotfiles` directory.
 

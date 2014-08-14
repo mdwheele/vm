@@ -1,6 +1,10 @@
 ---
 vm-config:
-    host_webroot: null
-    ssh:
-        private_key_path: null
-        forward_agent: false
+    memory: 2048
+    host:
+        http_port: 8080
+        https_port: 8443
+    synced_folder:
+        enabled: false
+        host_path: '~/Sites'
+        guest_path: '/var/www/html'
