@@ -2,6 +2,10 @@ require 'yaml'
 
 dir = File.dirname(File.expand_path(__FILE__))
 
+unless File.exists? ("#{dir}/config.yaml")
+	FileUtils.cp 'config.yaml.dist', 'config.yaml'
+end
+
 configValues = YAML.load_file("#{dir}/config.yaml")
 data = configValues['vm-config']
 
@@ -26,7 +30,7 @@ Vagrant.configure("2") do |config|
 
     config.vm.provider :virtualbox do |vm|
         vm.name = "local_dev_vm"
-        vm.customize ["modifyvm", :id, "--memory", data['memory'] ||= "4096"]
+        vm.customize ["modifyvm", :id, "--memory", data['memory'] ||= "2048"]
         vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
         vm.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     end
