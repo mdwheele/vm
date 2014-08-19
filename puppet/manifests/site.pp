@@ -72,7 +72,9 @@ node default {
             'git-client' => {},
             'scm-api' => {},
             'token-macro' => {},
-            'multiple-scms' => {}
+            'multiple-scms' => {},
+            'ssh-agent' => {},
+            'email-ext' => {}
         }
     }
 
