@@ -3,7 +3,7 @@ require 'yaml'
 dir = File.dirname(File.expand_path(__FILE__))
 
 unless File.exists? ("#{dir}/config.yaml")
-	FileUtils.cp 'config.yaml.dist', 'config.yaml'
+    FileUtils.cp 'config.yaml.dist', 'config.yaml'
 end
 
 configValues = YAML.load_file("#{dir}/config.yaml")
@@ -19,12 +19,12 @@ Vagrant.configure("2") do |config|
     config.vm.network :forwarded_port, guest: 80, host: data['host']['http_port'] ||= 8080, host_ip: "127.0.0.1"
     config.vm.network :forwarded_port, guest: 443, host: data['host']['https_port'] ||= 8443, host_ip: "127.0.0.1"
 
-	if data['synced_folder']['enabled']
-		host_path = data['synced_folder']['host_path'] ||= "~/Sites"
-		guest_path = data['synced_folder']['guest_path'] ||= "/var/www/html"
+    if data['synced_folder']['enabled']
+        host_path = data['synced_folder']['host_path'] ||= "~/Sites"
+        guest_path = data['synced_folder']['guest_path'] ||= "/var/www/html"
 
-	    config.vm.synced_folder host_path, guest_path, :mount_options => ["dmode=777","fmode=777"]
-	end
+        config.vm.synced_folder host_path, guest_path, :mount_options => ["dmode=777","fmode=777"]
+    end
 
     config.ssh.forward_agent = true
 
