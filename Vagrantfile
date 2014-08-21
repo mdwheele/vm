@@ -1,16 +1,17 @@
 require 'yaml'
+require_relative 'lib/hash'
 
 dir = File.dirname(File.expand_path(__FILE__))
 
-unless File.exists? ("#{dir}/config.yaml")
-	FileUtils.cp 'config.yaml.dist', 'config.yaml'
-end
+configValues = YAML.load_file("#{dir}/config.dist.yaml")
+dist = configValues['vm-config']
 
-configValues = YAML.load_file("#{dir}/config.yaml")
-data = configValues['vm-config']
+configValues = (File.exists? "#{dir}/config.yaml") ? YAML.load_file("#{dir}/config.yaml") : {'vm-config' => {}}
+overlay = configValues['vm-config']
+
+data = dist.deep_merge(overlay)
 
 Vagrant.configure("2") do |config|
-
     config.vm.box = "centos65"
     config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box"
     config.vm.hostname = "local.dev"
