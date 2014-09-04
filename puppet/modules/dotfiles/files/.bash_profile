@@ -46,11 +46,11 @@ function cept() {
 
 function behat() {
   clear
-  $(githome)/vendor/bin/behat $*
+  $(githome)/vendor/bin/behat $* --colors
 }
 
 function spec() {
   clear
-  $(githome)/vendor/bin/phpspec $*
+  $(githome)/vendor/bin/phpspec $* --ansi
 }
 
