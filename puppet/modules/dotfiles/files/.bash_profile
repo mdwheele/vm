@@ -38,11 +38,19 @@ alias pf="php-cs-fixer fix"
 
 # Testing-related aliases
 alias pu="clear && phpunit"
-alias behat="behat --ansi"
 
 function cept() {
   clear
   $(githome)/vendor/bin/codecept $*
 }
 
+function behat() {
+  clear
+  $(githome)/vendor/bin/behat $*
+}
+
+function spec() {
+  clear
+  $(githome)/vendor/bin/phpspec $*
+}
 
