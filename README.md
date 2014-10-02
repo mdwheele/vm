@@ -10,7 +10,6 @@ VM
 * Apache 2.2
 * HHVM (Used for running Composer)
 * Git 1.9
-* phpMyAdmin (latest)
 * Composer (latest)
 * PHPUnit (latest)
 * WP-CLI
@@ -137,17 +136,7 @@ If your application uses sendmail to send email, that path has been modified to 
 
 The easiest way to monitor that file is to run: `tail -f /tmp/php-mail`.
 
-#### Where's phpMyAdmin?!
-
-The environment comes installed with phpMyAdmin.  The actual source of the tool is outside the webroot and an alias is added to allow Apache to serve the tool.  You can access phpMyAdmin at:
-
-	http://localhost:8080/phpmyadmin
-	
-The tool automatically authenticates to the MySQL database running in the environment, so be careful.
-
-#### Wahhhh, I hate phpMyAdmin!
-
-Okay. For those of us that hate phpMyAdmin, here's instructions for using a hosted GUI client to establish a tunneled SSH session.  Below are a set of GUI clients that are fairly popular:
+#### Database access from host machine
 
 * [Sequel Pro](http://www.sequelpro.com/) (OS X)
 * [HeidiSQL](http://www.heidisql.com/) (Windows)

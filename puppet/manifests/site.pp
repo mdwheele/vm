@@ -50,7 +50,7 @@ node default {
     include selinux::disable, devtools, ntp
 
     # Application Stack
-    include php, httpd, mysql::server, phpmyadmin
+    include php, httpd, mysql::server
 
     # Development Tools
     include hhvm, phpunit, composer, wp-cli, php-cs-fixer
