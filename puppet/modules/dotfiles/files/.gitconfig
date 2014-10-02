@@ -29,6 +29,9 @@
     # Switch to branch, create if necessary.
     go = checkout -B
 
+    # Helpers for assume-unchanged
+    ignored = !git ls-files -v `git rev-parse --show-toplevel` | grep "^[[:lower:]]"
+
     # Verbose output about tags, branches or remotes.
     tags = tag -l
     branches = branch -a
