@@ -40,6 +40,12 @@ node default {
         stage   => repos
     }
 
+    # Set timezone
+    file { '/etc/localtime':
+        ensure => link,
+        target => "/usr/share/zoneinfo/America/New_York"
+    }
+
     # OS Packages
     include selinux::disable, devtools, ntp
 
