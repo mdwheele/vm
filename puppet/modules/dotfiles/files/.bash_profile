@@ -29,9 +29,6 @@ alias cu="composer update"
 alias ci="composer install"
 alias cda="composer dump-autoload -o"
 
-# Composer goes zooooom!
-alias composer="hhvm -v ResourceLimit.SocketDefaultTimeout=30 -v Http.SlowQueryThreshold=30000 /usr/bin/composer"
-
 # Linting-related aliases
 alias pfdr="php-cs-fixer fix --dry-run --verbose --diff"
 alias pf="php-cs-fixer fix"

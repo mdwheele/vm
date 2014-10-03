@@ -53,7 +53,7 @@ node default {
     include php, httpd, mysql::server
 
     # Development Tools
-    include hhvm, phpunit, composer, wp-cli, php-cs-fixer
+    include phpunit, composer, wp-cli, php-cs-fixer
 
     # Node Tools
     include nodejs, phantomjs
