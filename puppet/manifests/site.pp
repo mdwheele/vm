@@ -16,16 +16,6 @@ Package {
   allow_virtual => false
 }
 
-user { "vagrant":
-  ensure => present,
-  groups => ["vagrant", "mock"]
-}
-
-user { "jenkins":
-  ensure => present,
-  groups => ["vagrant", "mock"]
-}
-
 stage { "repos" :
   before  => Stage["main"]
 }
@@ -86,6 +76,22 @@ node default {
       'ssh-agent' => {},
       'email-ext' => {}
     }
+  }
+
+  group { "mock":
+    ensure => present
+  }
+
+  user { "vagrant":
+    ensure => present,
+    groups => ["vagrant", "mock"],
+    require => [Group["vagrant"], Group["mock"]]
+  }
+
+  user { "jenkins":
+    ensure => present,
+    groups => ["vagrant", "mock"],
+    require => [Group["vagrant"], Group["mock"]]
   }
 
   # User Environment Configuration
