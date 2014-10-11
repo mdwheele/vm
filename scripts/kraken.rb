@@ -36,14 +36,19 @@ class Kraken
             config.vm.synced_folder folder["map"], folder["to"], type: folder["with"] ||= nil, :mount_options => ["dmode=777","fmode=777"]
         end
 
+        # Install Ruby 1.9.3... CentOS hate hate hate...
+        config.vm.provision :shell, :path => "scripts/install-ruby.sh"
+
+        # Run Librarian Puppet...
+        config.vm.provision "shell" do |s|
+            s.inline = "cd /vagrant && librarian-puppet install --path puppet/modules-contrib/"
+        end
+
         # Remove Git... to be replaced with 1.9.0
         # This is removed as mitigation pain going from 1.7.1 -> 1.9.0
         config.vm.provision "shell" do |s|
             s.inline = "yum remove git -y >/dev/null"
         end
-
-        # Run Puppet Librarian
-        config.vm.provision :shell, :path => "scripts/puppet-librarian.sh"
 
         config.vm.provision :puppet do |puppet|
             puppet.module_path = [ "puppet/modules", "puppet/modules-contrib" ]
