@@ -42,8 +42,11 @@ class Kraken
             s.inline = "yum remove git -y >/dev/null"
         end
 
+        # Run Puppet Librarian
+        config.vm.provision :shell, :path => "scripts/puppet-librarian.sh"
+
         config.vm.provision :puppet do |puppet|
-            puppet.module_path = "puppet/modules"
+            puppet.module_path = [ "puppet/modules", "puppet/modules_contrib" ]
             puppet.manifests_path = "puppet/manifests"
             puppet.manifest_file  = "site.pp"
             puppet.options = "--hiera_config /vagrant/hiera.yaml"
