@@ -78,22 +78,6 @@ node default {
     }
   }
 
-  group { "mock":
-    ensure => present
-  }
-
-  user { "vagrant":
-    ensure => present,
-    groups => ["vagrant", "mock"],
-    require => [Group["vagrant"], Group["mock"]]
-  }
-
-  user { "jenkins":
-    ensure => present,
-    groups => ["vagrant", "mock"],
-    require => [Group["vagrant"], Group["mock"]]
-  }
-
   # User Environment Configuration
   include dotfiles
 

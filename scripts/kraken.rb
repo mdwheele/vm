@@ -33,16 +33,14 @@ class Kraken
 
         # Register shared folders...
         settings["folders"].each do |folder|
-            config.vm.synced_folder folder["map"], folder["to"], type: folder["with"] ||= nil, :mount_options => ["dmode=777","fmode=777"]
+            config.vm.synced_folder folder["map"], folder["to"], type: folder["with"] ||= nil
         end
 
         # Install Ruby 1.9.3... CentOS hate hate hate...
         config.vm.provision :shell, :path => "scripts/install-ruby.sh"
 
         # Run Librarian Puppet...
-        config.vm.provision "shell" do |s|
-            s.inline = "cd /vagrant && librarian-puppet install --path puppet/modules-contrib/"
-        end
+        config.vm.provision :shell, :path => "scripts/run-librarian-puppet.sh"
 
         # Remove Git... to be replaced with 1.9.0
         # This is removed as mitigation pain going from 1.7.1 -> 1.9.0
