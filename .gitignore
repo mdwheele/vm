@@ -1,3 +1,4 @@
 .vagrant/
 config.yaml
 .DS_Store
+puppet/modules-contrib
