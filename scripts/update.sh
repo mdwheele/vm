@@ -12,5 +12,3 @@ if [[ number -gt 0 ]]; then
 else
     echo "There were no updates! Huzzah."
 fi
-
-echo "Gone!"
