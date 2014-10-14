@@ -47,7 +47,7 @@ node default {
   include php, httpd, mysql::server
 
   # Development Tools
-  include phpunit, wp-cli, php-cs-fixer
+  include phpunit, wp-cli, phpcsfixer
 
   class { 'composer':
     auto_update => true
