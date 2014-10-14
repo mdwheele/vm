@@ -47,7 +47,11 @@ node default {
   include php, httpd, mysql::server
 
   # Development Tools
-  include phpunit, composer, wp-cli, php-cs-fixer
+  include phpunit, wp-cli, php-cs-fixer
+
+  class { 'composer':
+    auto_update => true
+  }
 
   # Node Tools
   include nodejs, phantomjs
