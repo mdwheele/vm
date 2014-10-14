@@ -12,14 +12,11 @@ File {
     mode  => '0777',
 }
 
-user { "vagrant":
-    ensure => present,
-    groups => ["vagrant", "mock"]
-}
 
-user { "jenkins":
+user { ["vagrant", "jenkins"]:
     ensure => present,
-    groups => ["vagrant", "mock"]
+    groups => ["vagrant", "mock"],
+    require => [Package["jenkins"], Package["mock"]]
 }
 
 stage { "repos" :
