@@ -58,7 +58,8 @@ node default {
 
   package { 'gulp':
     ensure => present,
-    provider => 'npm'
+    provider => 'npm',
+    require => Package['npm']
   }
 
   # Jenkins Hack Setup

@@ -2,7 +2,7 @@
 
 if [[ ! -d '/.kraken-stuff' ]]; then
     mkdir '/.kraken-stuff'
-    echo 'Created directory /.puphpet-stuff'
+    echo 'Created directory /.kraken-stuff'
 fi
 
 if [[ -f '/.kraken-stuff/install-ruby' ]]; then
