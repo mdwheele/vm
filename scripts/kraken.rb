@@ -57,6 +57,6 @@ class Kraken
 
         config.vm.provision :shell, :path => "scripts/update.sh"
 
-        
+
     end
 end

@@ -56,9 +56,9 @@ node default {
   # Node Tools
   include nodejs, phantomjs
 
-  nodejs::npm { '/usr/local/bin:gulp':
-    ensure      => present,
-    install_opt => "-g"
+  package { 'gulp':
+    ensure => present,
+    provider => 'npm'
   }
 
   # Jenkins Hack Setup
