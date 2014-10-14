@@ -1,5 +1,5 @@
 class Kraken
-    def self.release(config, settings)
+    def initialize(config, settings)
         # Configure the virtual machine
         config.vm.box = "centos65"
         config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box"
@@ -56,5 +56,7 @@ class Kraken
         end
 
         config.vm.provision :shell, :path => "scripts/update.sh"
+
+        
     end
 end

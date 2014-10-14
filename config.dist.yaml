@@ -14,4 +14,18 @@ ports:
 folders:
     - map: ~/Sites
       to: /var/www/html
-      with: "nfs"
+
+wordpress:
+  - site: default
+    with:
+      type: single
+      title: Single-site WordPress Installation
+      users:
+        - admin:admin
+
+  - site: multi
+    with:
+      type: multisite
+      title: Multi-site WordPress Installation
+      users:
+        - admin:admin

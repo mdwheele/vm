@@ -36,6 +36,16 @@ alias pf="php-cs-fixer fix"
 # Testing-related aliases
 alias pu="clear && phpunit"
 
+function serve() {
+    if [[ "$1" ]]; then
+        sudo bash /vagrant/scripts/serve.sh "$1" "$2"
+    else
+        echo "Error: missing required parameters."
+        echo "Usage: "
+        echo "  serve path [environment]"
+    fi
+}
+
 function cept() {
   clear
   $(githome)/vendor/bin/codecept $*
