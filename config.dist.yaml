@@ -14,3 +14,4 @@ ports:
 folders:
     - map: ~/Sites
       to: /var/www/html
+      with: "nfs"
