@@ -5,6 +5,8 @@ class Kraken
         config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box"
         config.vm.hostname = "kraken"
 
+        config.vm.boot_timeout = 300
+
         # Configure a private network and port forwarding to machine...
         config.vm.network :private_network, ip: settings["ip"] ||= "192.168.33.10"
         config.vm.network :forwarded_port, guest: 80, host: settings["ports"]["http"] ||= 8000, host_ip: "127.0.0.1"
@@ -33,7 +35,7 @@ class Kraken
 
         # Register shared folders...
         settings["folders"].each do |folder|
-            config.vm.synced_folder folder["map"], folder["to"], type: folder["with"] ||= nil, mount_options: folder["options"] ||= nil
+            config.vm.synced_folder folder["map"], folder["to"], type: folder["with"] ||= nil, :mount_options => folder["options"] ||= nil
         end
 
         # Install Ruby 1.9.3... CentOS hate hate hate...
@@ -56,7 +58,5 @@ class Kraken
         end
 
         config.vm.provision :shell, :path => "scripts/update.sh"
-
-
     end
 end

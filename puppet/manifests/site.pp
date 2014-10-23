@@ -83,6 +83,12 @@ node default {
     }
   }
 
+  user { ["vagrant", "jenkins"]:
+    ensure => present,
+    groups => ["vagrant", "mock"],
+    require => [Package["jenkins"], Package["mock"]]
+  }
+
   # User Environment Configuration
   include dotfiles
 

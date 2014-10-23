@@ -14,6 +14,8 @@ ports:
 folders:
     - map: ~/Sites
       to: /var/www/html
+      with: nfs
+      options: ['actimeo=2']
 
 wordpress:
   - site: default
