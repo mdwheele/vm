@@ -1,6 +1,6 @@
 ---
 ip: "192.168.33.10"
-memory: 2048
+memory: 8192
 
 authorize: ~/.ssh/id_rsa.pub
 
@@ -14,7 +14,6 @@ ports:
 folders:
     - map: ~/Sites
       to: /var/www/html
-      with: nfs
 
 wordpress:
   - site: default
