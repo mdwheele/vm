@@ -92,6 +92,27 @@ When you run `vagrant up`, [Vagrant VBGuest](https://github.com/dotless-de/vagra
 
 This are things you might do regularly in the environment.  If there's no documentation for how to do something you want, please suggest additions!
 
+#### Sharing folders
+
+Do not use VirtualBox's shared folder settings. The settings are managed by Vagrant, and any changes made in the VirtualBox Shared Folder dialog will be lost.
+
+To share a new folder, edit `config.yaml` and add a "synced_folder" entry, for example:
+```
+    synced_folder:
+        enabled: true
+        host_path: '~/workspace'
+        guest_path: '/var/www/html'
+```
+
+It is recommended that after mounting a folder in which you have a git repo, you run 
+```
+git status
+```
+
+Verify that the working directory appears clean from inside the VM.  GIT may assume that restrictions on file modes through shared folders are explicit changes, 
+and show all files as modified. You can edit `.git/config` and change the `core.filemode` property to `false` to suppress this behavior inside the VM. 
+The filemode setting will make any file mode changes invisible to GIT; you can change it back to check in actual file mode changes (but this will probably only be sensible to do outside of the VM). 
+
 #### Modifying VM Resources and Configuration
 
 You can modify a few configuration settings on the VM to personalize it to your specific needs. While there are not currently too many options available, I hope to expose more at a later time.
