@@ -27,6 +27,7 @@ node default {
     yum::repo::epel,
     yum::repo::rpmforge,
     yum::repo::remi,
+    yum::repo::eostesting,
     yum::repo::local
   ]
 
