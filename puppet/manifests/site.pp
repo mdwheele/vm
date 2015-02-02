@@ -3,85 +3,94 @@
 # manifests/ which will be included.
 
 Exec {
-    path => ["/bin", "/sbin", "/usr/bin", "/usr/sbin"],
+  path => ["/bin", "/sbin", "/usr/bin", "/usr/sbin"],
 }
 
 File {
-    owner => 'vagrant',
-    group => 'vagrant',
-    mode  => '0777',
+  owner => 'vagrant',
+  group => 'vagrant',
+  mode  => '0777',
 }
 
-
-user { ["vagrant", "jenkins"]:
-    ensure => present,
-    groups => ["vagrant", "mock"],
-    require => [Package["jenkins"], Package["mock"]]
+Package {
+  allow_virtual => false
 }
 
 stage { "repos" :
-    before  => Stage["main"]
+  before  => Stage["main"]
 }
 
 node default {
 
-    # Yum Repos
-    $repos = [
-        yum::repo::epel,
-        yum::repo::rpmforge,
-        yum::repo::remi,
-        yum::repo::local
-    ]
+  # Yum Repos
+  $repos = [
+    yum::repo::epel,
+    yum::repo::rpmforge,
+    yum::repo::remi,
+    yum::repo::eostesting,
+    yum::repo::local
+  ]
 
-    class { $repos :
-        stage   => repos
+  class { $repos :
+    stage   => repos
+  }
+
+  # Set timezone
+  file { '/etc/localtime':
+    ensure => link,
+    target => "/usr/share/zoneinfo/America/New_York"
+  }
+
+  # OS Packages
+  include selinux::disable, devtools, ntp
+
+  # Application Stack
+  include php, httpd, mysql::server
+
+  # Development Tools
+  include phpunit, wp-cli, phpcsfixer
+
+  class { 'composer':
+    auto_update => true
+  }
+
+  # Node Tools
+  include nodejs, phantomjs
+
+  package { 'gulp':
+    ensure => present,
+    provider => 'npm',
+    require => Package['npm']
+  }
+
+  # Jenkins Hack Setup
+  class { 'jenkins':
+    config_hash => {
+      'JENKINS_PORT' => { 'value' => '8080' },
+      'JENKINS_ARGS' => { 'value' => '--prefix=/jenkins --httpListenAddress=127.0.0.1' }
+    },
+    plugin_hash => {
+      'git' => {},
+      'promoted-builds' => {},
+      'credentials' => {},
+      'parameterized-trigger' => {},
+      'ssh-credentials' => {},
+      'git-client' => {},
+      'scm-api' => {},
+      'token-macro' => {},
+      'multiple-scms' => {},
+      'ssh-agent' => {},
+      'email-ext' => {}
     }
+  }
 
-    # Set timezone
-    file { '/etc/localtime':
-        ensure => link,
-        target => "/usr/share/zoneinfo/America/New_York"
-    }
+  user { ["vagrant", "jenkins"]:
+    ensure => present,
+    groups => ["vagrant", "mock"],
+    require => [Package["jenkins"], Package["mock"]]
+  }
 
-    # OS Packages
-    include selinux::disable, devtools, ntp
-
-    # Application Stack
-    include php, httpd, mysql::server
-
-    # Development Tools
-    include phpunit, composer, wp-cli, php-cs-fixer
-
-    # Node Tools
-    include nodejs, phantomjs
-
-    nodejs::npm { '/usr/local/bin:gulp':
-        ensure      => present,
-        install_opt => "-g"
-    }
-
-    # Jenkins Hack Setup
-    class { 'jenkins':
-        config_hash => {
-            'JENKINS_PORT' => { 'value' => '8080' },
-            'JENKINS_ARGS' => { 'value' => '--prefix=/jenkins --httpListenAddress=127.0.0.1' }
-        },
-        plugin_hash => {
-            'git' => {},
-            'promoted-builds' => {},
-            'credentials' => {},
-            'parameterized-trigger' => {},
-            'ssh-credentials' => {},
-            'git-client' => {},
-            'scm-api' => {},
-            'token-macro' => {},
-            'multiple-scms' => {},
-            'ssh-agent' => {},
-            'email-ext' => {}
-        }
-    }
-
-    # User Environment Configuration
-    include dotfiles
+  # User Environment Configuration
+  include dotfiles
 
 }

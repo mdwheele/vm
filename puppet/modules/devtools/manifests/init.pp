@@ -49,6 +49,4 @@ class devtools {
         require => Yumrepo["epel", "rpmforge", "local"]
     }
 
-    include devtools::vm
-
 }

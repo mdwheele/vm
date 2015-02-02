@@ -1,3 +1,6 @@
 .vagrant/
 config.yaml
 .DS_Store
+Puppetfile.lock
+.tmp/
+.librarian/

@@ -1,10 +1,34 @@
 ---
-vm-config:
-    memory: 2048
-    host:
-        http_port: 8080
-        https_port: 8443
-    synced_folder:
-        enabled: false
-        host_path: '~/Sites'
-        guest_path: '/var/www/html'
+ip: "192.168.33.10"
+cpus: 2
+memory: 8192
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+  - ~/.ssh/id_rsa
+
+ports:
+    http: 8000
+    https: 4430
+
+folders:
+    - map: ~/Sites
+      to: /var/www/html
+      with: nfs
+      options: ['nolock,vers=3,udp,noatime']
+
+wordpress:
+  - site: default
+    with:
+      type: single
+      title: Single-site WordPress Installation
+      users:
+        - admin:admin
+
+  - site: multi
+    with:
+      type: multisite
+      title: Multi-site WordPress Installation
+      users:
+        - admin:admin
