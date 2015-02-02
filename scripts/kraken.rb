@@ -14,7 +14,9 @@ class Kraken
 
         # Configure VirtualBox settings...
         config.vm.provider "virtualbox" do |vb|
-            vb.customize ["modifyvm", :id, "--memory", settings["memory"] ||= "2048"]
+        	vb.cpus = settings["cpus"] ||= "2"
+        	vb.memory = settings["memory"] ||= "2048"
+
             vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
             vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
         end
@@ -35,7 +37,9 @@ class Kraken
 
         # Register shared folders...
         settings["folders"].each do |folder|
-            config.vm.synced_folder folder["map"], folder["to"], type: folder["with"] ||= nil, mount_options: folder["options"] ||= nil, :bsd__nfs_options => ["-maproot=0:0"]
+            config.vm.synced_folder folder["map"], folder["to"], type: folder["with"] ||= nil, mount_options: folder["options"] ||= nil
+			config.nfs.map_uid = Process.uid
+			config.nfs.map_gid = Process.gid
         end
 
         # Install Ruby 1.9.3... CentOS hate hate hate...
