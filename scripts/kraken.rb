@@ -38,8 +38,8 @@ class Kraken
         # Register shared folders...
         settings["folders"].each do |folder|
             config.vm.synced_folder folder["map"], folder["to"], type: folder["with"] ||= nil, mount_options: folder["options"] ||= nil
-			config.nfs.map_uid = Process.uid
-			config.nfs.map_gid = Process.gid
+            config.nfs.map_uid = Process.uid
+            config.nfs.map_gid = Process.gid
         end
 
         # Install Ruby 1.9.3... CentOS hate hate hate...

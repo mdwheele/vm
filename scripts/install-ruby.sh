@@ -11,6 +11,7 @@ fi
 
 echo 'Installing Ruby 1.9.3 using Ruby environment manager...'
 
+gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 curl -sSL https://get.rvm.io | bash -s stable --quiet-curl --ruby=1.9.3
 source /usr/local/rvm/scripts/rvm
 
@@ -26,6 +27,7 @@ ln -s /usr/local/rvm/rubies/ruby-1.9.3-p*/bin/ruby /usr/bin/ruby
 ln -s /usr/local/rvm/rubies/ruby-1.9.3-p*/bin/gem /usr/bin/gem
 
 usermod -a -G rvm vagrant
+usermod -a -G rvm root
 /usr/bin/gem install puppet --no-document >/dev/null
 /usr/bin/gem install librarian-puppet --no-document >/dev/null
 /usr/bin/gem update --system >/dev/null
