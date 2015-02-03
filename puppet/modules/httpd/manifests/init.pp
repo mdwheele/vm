@@ -10,8 +10,8 @@ class httpd (
 
     file { "/var/www/html":
         ensure => directory,
-        owner  => 'vagrant',
-        group  => 'vagrant'
+        owner  => 'root',
+        group  => 'root'
     }
 
     file { "/etc/httpd/conf/httpd.conf":
