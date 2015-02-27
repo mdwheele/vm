@@ -16,7 +16,7 @@ folders:
     - map: ~/Sites
       to: /var/www/html
       with: nfs
-      options: ['nolock,vers=3,udp,noatime']
+      options: ['nolock,vers=3,udp,noatime,actimeo=2']
 
 wordpress:
   - site: default
