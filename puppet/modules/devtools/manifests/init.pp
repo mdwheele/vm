@@ -24,7 +24,6 @@ class devtools {
         "vim-common",
         "vim-enhanced",
         "vim-minimal",
-        "curl",
         "libxml2-devel",
         "httpd-devel",
         "libXpm-devel",
@@ -47,6 +46,13 @@ class devtools {
     package { $packages :
         ensure  => latest,
         require => Yumrepo["epel", "rpmforge", "local"]
+    }
+
+    if ! defined(Package["curl"]) {
+        package { "curl" :
+            ensure => latest,
+            require => Yumrepo["epel", "rpmforge", "local"]
+        }
     }
 
 }
