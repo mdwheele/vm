@@ -17,18 +17,3 @@ folders:
       to: /var/www/html/
       with: ~
       options: ['dmode=777,fmode=777']
-
-wordpress:
-  - site: default
-    with:
-      type: single
-      title: Single-site WordPress Installation
-      users:
-        - admin:admin
-
-  - site: multi
-    with:
-      type: multisite
-      title: Multi-site WordPress Installation
-      users:
-        - admin:admin
