@@ -63,31 +63,10 @@ node default {
     require => Package['npm']
   }
 
-  # Jenkins Hack Setup
-  class { 'jenkins':
-    config_hash => {
-      'JENKINS_PORT' => { 'value' => '8080' },
-      'JENKINS_ARGS' => { 'value' => '--prefix=/jenkins --httpListenAddress=127.0.0.1' }
-    },
-    plugin_hash => {
-      'git' => {},
-      'promoted-builds' => {},
-      'credentials' => {},
-      'parameterized-trigger' => {},
-      'ssh-credentials' => {},
-      'git-client' => {},
-      'scm-api' => {},
-      'token-macro' => {},
-      'multiple-scms' => {},
-      'ssh-agent' => {},
-      'email-ext' => {}
-    }
-  }
-
-  user { ["vagrant", "jenkins"]:
+  user { ["vagrant"]:
     ensure => present,
     groups => ["vagrant", "mock"],
-    require => [Package["jenkins"], Package["mock"]]
+    require => [Package["mock"]]
   }
 
   # User Environment Configuration
