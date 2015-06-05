@@ -1,5 +1,5 @@
 ---
-ip: "192.168.33.10"
+ip: "192.168.33.31"
 cpus: 2
 memory: 8192
 
@@ -13,10 +13,10 @@ ports:
     https: 4430
 
 folders:
-    - map: ~/Sites
-      to: /var/www/html
-      with: nfs
-      options: ['nolock,vers=3,udp,noatime,actimeo=2']
+    - map: ~/Sites/
+      to: /var/www/html/
+      with: ~
+      options: ['dmode=777,fmode=777']
 
 wordpress:
   - site: default
