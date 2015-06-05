@@ -12,3 +12,7 @@ folders:
 #      with: ~
 #      options: ['dmode=777,fmode=777']
 ```
+
+## Puppet Gem Version conflicts with Vagrant-latest
+
+Just need to revert the gem version to something previous. I think 3.7.5 or 3.8.1.
