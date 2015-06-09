@@ -8,9 +8,9 @@ INSTALL/UPGRADE VM
     
     > vagrant plugin install vagrant-vbguest
     
-    Update your dotfiles in your own `~` directory 
+    Update your dotfiles in your own `~` directory.  They will be pulled over on provision.
     
-    Update the `config.dist.yaml` file as needed (primarily memory and shared files location)  There is no longer a merge between config files.
+    Update the `config.yaml` file, only the settings that you need to overwrite.
     
     > vagrant up
         installs the centos box 
