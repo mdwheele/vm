@@ -8,7 +8,7 @@ INSTALL/UPGRADE VM
     
     > vagrant plugin install vagrant-vbguest
     
-    Update your dotfiles in your own `~` directory.  They will be pulled over on provision.
+    Update your dotfiles in the `files/dotfiles` directory.  They will be included on provision.
     
     Update the `config.yaml` file, only the settings that you need to overwrite.
     
