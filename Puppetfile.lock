@@ -1,0 +1,35 @@
+FORGE
+  remote: https://forgeapi.puppetlabs.com
+  specs:
+    3fs-phantomjs (0.0.4)
+    maestrodev-wget (1.5.6)
+    mike182uk-phpcsfixer (0.0.3)
+    puppetlabs-apt (1.6.0)
+      puppetlabs-stdlib (>= 2.2.1)
+    puppetlabs-concat (1.1.1)
+      puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
+    puppetlabs-git (0.2.0)
+      puppetlabs-vcsrepo (>= 0.1.0)
+    puppetlabs-java (1.1.2)
+      puppetlabs-stdlib (>= 2.4.0)
+    puppetlabs-mysql (2.3.1)
+      puppetlabs-stdlib (>= 3.2.0)
+    puppetlabs-nodejs (0.6.1)
+      puppetlabs-apt (>= 0.0.3)
+      puppetlabs-stdlib (>= 2.0.0)
+    puppetlabs-stdlib (4.3.2)
+    puppetlabs-vcsrepo (1.1.0)
+    willdurand-composer (1.0.0)
+      maestrodev-wget (>= 1.2.0)
+
+DEPENDENCIES
+  3fs-phantomjs (>= 0)
+  mike182uk-phpcsfixer (>= 0)
+  puppetlabs-concat (= 1.1.1)
+  puppetlabs-git (= 0.2.0)
+  puppetlabs-java (= 1.1.2)
+  puppetlabs-mysql (= 2.3.1)
+  puppetlabs-nodejs (= 0.6.1)
+  puppetlabs-stdlib (= 4.3.2)
+  willdurand-composer (~> 1.0)
+

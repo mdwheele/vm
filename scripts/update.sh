@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "Checking for updates..."
 number=$(yum check-update | egrep '(.i386|.x86_64|.noarch|.src)' | wc -l)
@@ -12,5 +12,3 @@ if [[ number -gt 0 ]]; then
 else
     echo "There were no updates! Huzzah."
 fi
-
-echo "Gone!"

@@ -1,19 +1,21 @@
 VM
 ===
 
+** This README.md is somewhat out of date, however, it is retained for reference until it can be updated; the upstream repository deleted the entire contents of the file. **
+
 ## Features
 
 ### Installed Packages
 
-* PHP 5.3.3
-* MySQL 5.1
+* PHP 5.4.x
+* MySQL 5.1.x
 * Apache 2.2
 * HHVM (Used for running Composer)
-* Git 1.9
+* Git 1.9.x
 * Composer (latest)
 * PHPUnit (latest)
 * WP-CLI
-* PhantomJS
+* PhantomJS 1.9.x
 
 ## Running the Environment
 
@@ -31,7 +33,7 @@ After installing Vagrant, you can clone this repository anywhere you choose.  Th
 
 The following command will clone the repository to your current working directory:
 
-```git clone --recursive git@github.com:mdwheele/vm.git```
+	git clone --recursive git@github.com:mdwheele/vm.git
 
 **Change directories into the cloned repository.**
 
@@ -53,9 +55,14 @@ So, all that said, it takes about 8-10 minutes to provision on a circa 2010 Macb
 	vagrant up
 
 *Provision the VM*
-This re-runs the initial setup of the vm and updates the yum packages.  Run this if you unpack an rpm into the `/files/rpm` directory. The first time you run `vagrant up`, it will be provisioned, but never after.
+
+The first time you run `vagrant up`, it will run the `provision` command for you as well, one time only:
 
 	vagrant provision
+
+The provision command performs the initial setup of the vm and updates the yum packages.  
+
+You should re-run this whenever you install a new package: unpack its rpm into the `/files/rpm` directory first.
 	
 *Logging into the VM*
 
@@ -132,6 +139,16 @@ vm-config:
         enabled: false
         host_path: '~/Sites'
         guest_path: '/var/www/html'
+```
+
+##### _Note_
+
+It is fairly common to have a conflict if another server on localhost has already allocated ports 80 and 443 - the ports for the HTTP and HTTPS services respectively.
+
+So the default configuration remaps these ports on the VM to alternatives. You'll need to accomodate the alternate ports when accessing your Web application through a browser, for instance:
+
+```
+https://localhost:8443/my/web/app/path
 ```
 
 #### Installing other RPMs
