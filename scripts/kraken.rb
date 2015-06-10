@@ -23,6 +23,10 @@ class Kraken
 
         # Configure SSH keys...
         config.vm.provision "shell" do |s|
+            s.inline = "eval $(ssh-agent)"
+        end
+
+        config.vm.provision "shell" do |s|
             s.inline = "echo $1 | tee -a /home/vagrant/.ssh/authorized_keys"
             s.args = [File.read(File.expand_path(settings["authorize"]))]
         end
@@ -30,7 +34,7 @@ class Kraken
         settings["keys"].each do |key|
             config.vm.provision "shell" do |s|
                 s.privileged = false
-                s.inline = "echo \"$1\" > /home/vagrant/.ssh/$2 && chmod 600 /home/vagrant/.ssh/$2"
+                s.inline = "echo \"$1\" > /home/vagrant/.ssh/$2 && chmod 600 /home/vagrant/.ssh/$2 && ssh-add /home/vagrant/.ssh/$2"
                 s.args = [File.read(File.expand_path(key)), key.split('/').last]
             end
         end
