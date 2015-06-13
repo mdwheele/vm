@@ -8,6 +8,10 @@ INSTALL/UPGRADE VM
     
     > vagrant plugin install vagrant-vbguest
     
+    Update your dotfiles in the `files/dotfiles` directory.  They will be included on provision.
+    
+    Update the `config.yaml` file, only the settings that you need to overwrite.
+    
     > vagrant up
         installs the centos box 
         yum install of packages
