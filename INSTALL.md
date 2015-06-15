@@ -24,6 +24,8 @@ OPTIONAL: MANAGE HOSTS
 
 Install the Vagrant::Ghost plugin
 
-||| $ vagrant plugin install vagrant-ghost
+```bash
+$ vagrant plugin install vagrant-ghost
+```
 
 Can now browse served content at http://local.dev
