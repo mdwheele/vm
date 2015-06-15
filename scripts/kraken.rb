@@ -5,6 +5,7 @@ class Kraken
         config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box"
         config.vm.hostname = "local.dev"
 
+        config.ssh.forward_agent = settings["forward_ssh"] ||= false
         config.vm.boot_timeout = 300
 
         # Configure a private network and port forwarding to machine...
@@ -23,10 +24,6 @@ class Kraken
 
         # Configure SSH keys...
         config.vm.provision "shell" do |s|
-            s.inline = "eval $(ssh-agent)"
-        end
-
-        config.vm.provision "shell" do |s|
             s.inline = "echo $1 | tee -a /home/vagrant/.ssh/authorized_keys"
             s.args = [File.read(File.expand_path(settings["authorize"]))]
         end
@@ -34,7 +31,7 @@ class Kraken
         settings["keys"].each do |key|
             config.vm.provision "shell" do |s|
                 s.privileged = false
-                s.inline = "echo \"$1\" > /home/vagrant/.ssh/$2 && chmod 600 /home/vagrant/.ssh/$2 && ssh-add /home/vagrant/.ssh/$2"
+                s.inline = "echo \"$1\" > /home/vagrant/.ssh/$2 && chmod 600 /home/vagrant/.ssh/$2"
                 s.args = [File.read(File.expand_path(key)), key.split('/').last]
             end
         end

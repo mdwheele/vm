@@ -5,6 +5,8 @@ memory: ~
 
 authorize: ~/.ssh/id_rsa.pub
 
+forward_ssh: ~
+
 keys:
   - ~/.ssh/id_rsa
 

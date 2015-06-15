@@ -6,6 +6,11 @@ if [ -f ~/.git-completion.bash ]; then
    . ~/.git-completion.bash
 fi
 
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+    eval `ssh-agent -s`
+    ssh-add
+fi
+
 # General environment command-line helpers
 alias ll="ls -lah" # List all, with human readable filesizes
 alias lf="ls -FC"
