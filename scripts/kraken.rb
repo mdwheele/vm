@@ -3,7 +3,7 @@ class Kraken
         # Configure the virtual machine
         config.vm.box = "centos65"
         config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box"
-        config.vm.hostname = "kraken.dev"
+        config.vm.hostname = "local.dev"
 
         config.vm.boot_timeout = 300
 
