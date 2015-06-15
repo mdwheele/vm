@@ -17,3 +17,15 @@ INSTALL/UPGRADE VM
         yum install of packages
         blah blah blah
     
+
+
+OPTIONAL: MANAGE HOSTS
+=======================
+
+Install the Vagrant::Ghost plugin
+
+```bash
+$ vagrant plugin install vagrant-ghost
+```
+
+Can now browse served content at http://local.dev
