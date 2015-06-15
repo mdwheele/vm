@@ -16,3 +16,11 @@ folders:
 ## Puppet Gem Version conflicts with Vagrant-latest
 
 Just need to revert the gem version to something previous. I think 3.7.5 or 3.8.1.
+
+## SSH Agent Forwarding
+
+- If you choose to enable agent forwarding, then the agent is forwarded and the VM provisioners will
+  do **NO** work in adding identities to that agent for you. It's on the host machine's configuration to
+  make sure that's all good.
+- If there is no running agent, one is started upon SSH'ing to the VM as `vagrant` (`vagrant ssh`) and
+  all keys previously provisioned to `/home/vagrant/.ssh` are added to the agent as identities.

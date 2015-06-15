@@ -5,6 +5,7 @@ class Kraken
         config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box"
         config.vm.hostname = "local.dev"
 
+        config.ssh.forward_agent = settings["forward_ssh"] ||= false
         config.vm.boot_timeout = 300
 
         # Configure a private network and port forwarding to machine...
