@@ -2,8 +2,12 @@ require 'yaml'
 require_relative 'scripts/hash'
 require_relative 'scripts/kraken'
 
-settingsPath = File.join(File.dirname(__FILE__), "config.dist.yaml")
+yaml_config = YAML.load_file('config.dist.yaml')
+
+if File.exist?('config.yaml')
+    yaml_config.merge! YAML.load_file('config.yaml')
+end
 
 Vagrant.configure("2") do |config|
-    Kraken.new(config, YAML.load_file(settingsPath))
+    Kraken.new(config, yaml_config)
 end

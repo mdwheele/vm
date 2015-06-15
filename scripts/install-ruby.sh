@@ -28,7 +28,7 @@ ln -s /usr/local/rvm/rubies/ruby-1.9.3-p*/bin/gem /usr/bin/gem
 
 usermod -a -G rvm vagrant
 usermod -a -G rvm root
-/usr/bin/gem install puppet --no-document >/dev/null
+/usr/bin/gem install puppet -v 3.7.5 --no-document >/dev/null
 /usr/bin/gem install librarian-puppet --no-document >/dev/null
 /usr/bin/gem update --system >/dev/null
 

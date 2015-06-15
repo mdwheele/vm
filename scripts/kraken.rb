@@ -15,7 +15,7 @@ class Kraken
         # Configure VirtualBox settings...
         config.vm.provider "virtualbox" do |vb|
         	vb.cpus = settings["cpus"] ||= "2"
-        	vb.memory = settings["memory"] ||= "2048"
+        	vb.memory = settings["memory"] ||= get_memory()
 
             vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
             vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
@@ -62,5 +62,19 @@ class Kraken
         end
 
         config.vm.provision :shell, :path => "scripts/update.sh"
+    end
+
+    def get_memory()
+        host = RbConfig::CONFIG['host_os']
+
+        if host =~ /darwin/
+            mem = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / 2
+        elsif host =~ /linux/
+            mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / 2
+        else
+            mem = 2048
+        end
+
+        mem
     end
 end
