@@ -9,7 +9,7 @@ class Kraken
         config.vm.boot_timeout = 300
 
         # Configure a private network and port forwarding to machine...
-        config.vm.network :private_network, ip: settings["ip"] ||= "192.168.33.10"
+        config.vm.network :private_network, ip: settings["ip"] ||= "192.168.33.31"
         config.vm.network :forwarded_port, guest: 80, host: settings["ports"]["http"] ||= 8000, host_ip: "127.0.0.1"
         config.vm.network :forwarded_port, guest: 443, host: settings["ports"]["https"] ||= 4430, host_ip: "127.0.0.1"
 
