@@ -1,8 +1,7 @@
 class Kraken
     def initialize(config, settings)
         # Configure the virtual machine
-        config.vm.box = "centos65"
-        config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box"
+        config.vm.box = "puppetlabs/centos-7.0-64-puppet"
         config.vm.hostname = "local.dev"
 
         config.ssh.forward_agent = settings["forward_ssh"] ||= false
