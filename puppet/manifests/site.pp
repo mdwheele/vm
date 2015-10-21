@@ -27,7 +27,7 @@ node default {
     yum::repo::epel,
     yum::repo::rpmforge,
     yum::repo::remi,
-    yum::repo::eosphp54,
+    yum::repo::eosphp,
     yum::repo::local
   ]
 
