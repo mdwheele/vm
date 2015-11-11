@@ -18,6 +18,10 @@ class devtools {
 
         # General,
         "git",
+        "htop",
+        "atop",
+        "apachetop",
+        "iotop"
 
         # PHP...
         "vim-X11",
