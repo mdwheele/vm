@@ -21,7 +21,7 @@ class devtools {
         "htop",
         "atop",
         "apachetop",
-        "iotop"
+        "iotop",
 
         # PHP...
         "vim-X11",
