@@ -41,6 +41,12 @@ alias pf="php-cs-fixer fix"
 # Testing-related aliases
 alias pu="clear && phpunit"
 
+# Load xdebug Zend extension with php command
+alias php='php -dzend_extension="/usr/lib64/php/modules/xdebug.so"'
+
+# PHPUnit needs xdebug for coverage. In this case, just make an alias with php command prefix.
+alias phpunit='php $(which phpunit)'
+
 function serve() {
     if [[ "$1" ]]; then
         sudo bash /vagrant/scripts/serve.sh "$1" "$2"
