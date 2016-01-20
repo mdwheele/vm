@@ -38,14 +38,12 @@ alias cda="composer dump-autoload -o"
 alias pfdr="php-cs-fixer fix --dry-run --verbose --diff"
 alias pf="php-cs-fixer fix"
 
+# Load xdebug Zend extension with php command
+alias php="php -dzend_extension=/usr/lib64/php/modules/xdebug.so"
+alias phpunit="php $(which phpunit)"
+
 # Testing-related aliases
 alias pu="clear && phpunit"
-
-# Load xdebug Zend extension with php command
-alias php='php -dzend_extension="/usr/lib64/php/modules/xdebug.so"'
-
-# PHPUnit needs xdebug for coverage. In this case, just make an alias with php command prefix.
-alias phpunit='php $(which phpunit)'
 
 function serve() {
     if [[ "$1" ]]; then
