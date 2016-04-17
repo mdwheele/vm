@@ -21,7 +21,8 @@ class php (
         "php-dba",
         "php-snmp",
         "php-bcmath",
-        "php-mcrypt"
+        "php-mcrypt",
+        "php-process"
     ]
 
     package { $packages:
