@@ -20,9 +20,6 @@
     # Pull repository changes and update submodules.
     p = !"git pull; git submodule foreach git pull origin master"
 
-    # Diff staged changes to review before commit.
-    ds = diff --staged
-
     # Commit all changes.
     ca = !"git add -A && git commit -a"
 
@@ -36,7 +33,21 @@
     tags = tag -l
     branches = branch -a
     remotes = remote -v
-
+    stashes = stash list
+    
+    # "Undo" operations
+    unstage = reset -q HEAD --
+    discard = checkout --
+    uncommit = reset --mixed HEAD~
+    amend = commit --amend
+    nevermind = !git reset --hard HEAD && git clean -d -f
+    
+    # Who's doing what?
+    graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+    
+    # Am I committing too much?
+    precommit = diff --cached --diff-algorithm=minimal -w
+    
     # Interactive rebase with given number of commits.
     reb = "!r() { git rebase -i HEAD~$1; }; r"
 
